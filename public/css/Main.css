@@ -1,0 +1,221 @@
+body {
+	background: url("../images/Laughing-Baby-Boy.jpg") no-repeat center center fixed ;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+.nav-div {
+	background-color: #222222;
+	height: 40px;
+
+}
+
+navbar {
+	position: fixed;
+	width: 100%;
+
+}
+
+navbar ul {
+	display: block;
+	list-style: none;
+	position: relative;
+	box-shadow: 0 0 5px;
+	background-color: #222222;
+}
+
+navbar ul li ul li {
+	border-bottom: 0.9px solid #999999;
+	padding: 0 0 0 0;
+}
+
+navbar ul li ul li:hover {
+	border-bottom: 0.9px solid #999999;
+	background-color: #555555;
+}
+
+navbar ul li {
+	float: left;
+	padding-right: 25px;
+	font-family: Cambria;
+	font-weight: bold;
+	font-size: large;
+	color: #999999;
+	border-bottom: 0px;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+	white-space: nowrap;
+
+}
+
+navbar ul li ul {
+	display: none;
+	padding-left: 0;
+	margin-left: 0;
+	border-left: 0;
+	padding-top: 0;
+}
+
+navbar ul li:hover > ul {
+	display: block;
+	position: absolute;
+	float: none;
+}
+
+navbar ul li:hover > ul li {
+	float: none;
+	top: 100%;
+	display: block;
+}
+
+
+.mascot {
+    font-weight: bold;
+    font-family: Cambria;
+    font-size: x-large;
+    text-shadow: 0 0 3px;
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+    border-bottom: 0;
+    color: orange;
+    box-shadow: none;
+}
+
+    .mascot:hover {
+        color: #00ff21;
+        background: none;
+        cursor: pointer;
+    }
+
+
+
+.form-style {
+	width: 100%;
+	height: 32px;
+	margin-top: 4px;
+	margin-right: 0px;
+	padding-top: 3px;
+	padding-bottom: 1px;
+	padding-right: 3px;
+	padding-left: 3px;
+	border-width: 10px;
+	background-color: #555555;
+	
+}
+
+.search { 
+	height: 25px;
+	cursor: text;
+	color: white;
+	font-family: Cambria, Georgia, Times, "Times New Roman", serif;
+	font-weight: normal;
+	-webkit-user-select: cursor;
+	border-style: none;
+	padding-left: 5px;
+	background-color: #222222;
+}
+
+.inset {
+   -moz-box-shadow: inset 0 3px 8px rgba(0,0,0,.4);
+   -webkit-box-shadow: inset 0 3px 8px rgba(0,0,0,.4);
+}
+
+
+.circle {
+	width: 35px;
+	height: 25px;
+	-moz-border-radius: 100px;
+	-webkit-border-radius: 100px;
+	background-color: #222222;
+	padding-top: 0;
+	padding-left: 8px;
+	margin-bottom: 5px;
+	box-shadow: 0 0 4px;
+	color: white;
+}
+
+.circle:hover {
+	color: orange;	
+}
+
+.rounded { 
+	border-radius:15px; 
+	-moz-border-radius:15px; 
+	-webkit-border-radius:15px; 
+	-webkit-user-select: text;
+}
+
+
+.loginUL {
+	padding-top: 14px;
+	cursor: pointer;
+}
+
+
+.knowUs {
+	padding-top: 14px;
+	cursor: pointer;
+}
+
+
+.form-login {
+	padding: 0 0 0 0 ;
+	margin-top: 0;
+	background-color: #222222;
+	color: white;
+}
+
+.login {
+	height: 100%;
+	display: block;
+	position: relative;
+	float: left;
+	color: white;
+	font-weight: 200px;
+	border-style: none;
+	font-style: italic;
+	font-family: Perpetua, Baskerville, "Big Caslon", "Palatino Linotype", Palatino, "URW Palladio L", "Nimbus Roman No9 L", serif;
+	background-color: #222222;	
+	border-top: 0px;
+	border-right: 2px;
+	margin-right: 5px;
+}
+
+.loginRadio {
+	position: absolute;
+	font-size: 0.7em;
+	font-weight: normal;
+	font-family: Calibri;
+	background-color: #222222;
+	width: 100%;
+}
+
+input[type="radio"] {
+	margin-left: 10px;
+}
+
+.icon {
+	width: 20px;
+	height: 20px;
+	background-position:-140px -115px;
+	text-indent:-9999px;
+}
+
+.google {
+	background-image:url("images/google.ico");
+}
+
+.go {
+	background-color: orange;
+	color: black;
+	border-radius:15px; 
+	-moz-border-radius:15px; 
+	-webkit-border-radius:15px; 
+	-webkit-user-select: text;	
+	padding-right: 2px;
+	padding-left: 2px;
+	margin-right: 2px;
+	margin-top: 0;
+}

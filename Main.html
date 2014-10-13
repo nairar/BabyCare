@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html ng-app="T800" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>T800 App</title>
+		<script type="application/javascript" src="js/angular.min.js"></script>
+		<script type="application/javascript" src="js/angular-route.min.js"></script>
+		<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/Main.css">
+
+	</head>
+	<body>
+		<div class="nav-div">
+			<navbar>
+				<ul>
+					<li class="mascot">BabyCare</li>
+					<li>
+						<form class="rounded form-style">
+							<span><input type="text" class="search inset rounded" placeholder="search"></span>
+							<span><button class="btn circle">Go</button></span>
+						</form>
+                    <li>
+                    <li class="loginUL">
+                    	Login <b class="glyphicon glyphicon-user"></b>
+                    	<ul>
+	                        <li>
+	                        	<form class="form-login form-style">
+		                        	<div class="loginForm">
+		                        		<input class="login inset" placeholder="username/email id">
+		                        		<input type="password" class="login inset" placeholder="password">
+		                        		<span><a href="#" class="go">&rarr;</a></span>
+		                        	</div>
+	                        		<div class="loginRadio">
+	                        			<label>Login type: </label>
+		                        		<input type="radio" name="radioLogin" value="baby">BabyCare</input>
+		                        		<input type="radio" name="radioLogin" value="facebook">
+		                        			<img src="images/facebook_icon.ico" class="icon"></a>
+		                        		</input>
+		                        		<input type="radio" name="radioLogin" value="google">
+		                        			<img src="images/google.ico" class="icon"></a>
+		                        		</input>
+	                        		</div>
+	                        	</form>
+	                        </li>
+	                    </ul>
+                    </li>
+					<li class="pull-right knowUs">
+						Know Us<b class="caret"></b>
+	                    <ul>
+	                        <li>About</li>
+	                        <li>Careers</li>
+	                        <li>Contact Us</li>
+	                    </ul>
+                    </li>
+				</ul>
+			</navbar>
+		</div>
+		<div class="container" ng-controller="MainController">
+			
+		</div>
+	</body>
+</html>
