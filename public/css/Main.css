@@ -38,7 +38,7 @@ navbar ul li ul li:hover {
 navbar ul li {
 	float: left;
 	padding-right: 25px;
-	font-family: Cambria;
+	font-family: Arial;
 	font-weight: bold;
 	font-size: large;
 	color: #999999;
@@ -46,7 +46,6 @@ navbar ul li {
 	margin-bottom: 0px;
 	padding-bottom: 0px;
 	white-space: nowrap;
-
 }
 
 navbar ul li ul {
@@ -102,14 +101,13 @@ navbar ul li:hover > ul li {
 	padding-left: 3px;
 	border-width: 10px;
 	background-color: #555555;
-	
 }
 
 .search { 
-	height: 25px;
+	height: 24px;
 	cursor: text;
 	color: white;
-	font-family: Cambria, Georgia, Times, "Times New Roman", serif;
+	font-family: Arial;
 	font-weight: normal;
 	-webkit-user-select: cursor;
 	border-style: none;
@@ -153,10 +151,20 @@ navbar ul li:hover > ul li {
 	cursor: pointer;
 }
 
+.loginUL a {
+	text-decoration: none;
+}
+
 
 .knowUs {
 	padding-top: 14px;
 	cursor: pointer;
+	
+}
+
+.knowUsUL {
+	padding-right: 10px;
+	padding-left: 10px;
 }
 
 
@@ -173,10 +181,10 @@ navbar ul li:hover > ul li {
 	position: relative;
 	float: left;
 	color: white;
-	font-weight: 200px;
+	font-weight: 100;
+	font-size: 12px;
 	border-style: none;
-	font-style: italic;
-	font-family: Perpetua, Baskerville, "Big Caslon", "Palatino Linotype", Palatino, "URW Palladio L", "Nimbus Roman No9 L", serif;
+	font-family: Arial;
 	background-color: #222222;	
 	border-top: 0px;
 	border-right: 2px;
@@ -187,7 +195,7 @@ navbar ul li:hover > ul li {
 	position: absolute;
 	font-size: 0.7em;
 	font-weight: normal;
-	font-family: Calibri;
+	font-family: Arial;
 	background-color: #222222;
 	width: 100%;
 }

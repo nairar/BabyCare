@@ -1,0 +1,67 @@
+@media (min-width: 768px) {
+
+	.exactCenter {
+	    width:200px;
+	    height:150px;
+	    position: fixed;
+	    background-color: darkgray;
+	    border: 2px solid black;
+	    box-shadow: 0 0 10px;
+	    top: 40%;
+	    left: 30%;
+	    margin-top: -100px;
+	    margin-left: -100px;
+	    padding-left: 10px;
+	    font-family: Arial;
+		font-weight: normal;
+	}
+
+	.exactCenter input.flow-control{
+		background-color: #dcdcdc;
+	}
+
+	.pad {
+		margin-top: 10px;
+	}
+
+	.btn-signup {
+		margin-left: 55px;
+		border-radius: 10px;
+		background-color: black;
+		font-size: 12px;
+	}
+}
+
+@media (max-width: 768px) {
+
+	.exactCenter {
+	    width:auto;
+	    height:auto;
+	    position: fixed;
+	    background-color: darkgray;
+	    border: 2px solid black;
+	    box-shadow: 0 0 10px;
+	    top: 30%;
+	    left: 50%;
+	    margin-top: -100px;
+	    margin-left: -130px;
+	    margin-right: 20px;
+	    padding-left: 40px;
+	    padding-bottom: 10px;
+	}
+	
+	.exactCenter input.flow-control{
+		background-color: #dcdcdc;
+	}
+
+	.pad {
+		margin-top: 10px;
+	}
+
+	.btn-signup {
+		margin-left: 55px;
+		border-radius: 10px;
+		background-color: black;
+		font-size: 12px;
+	}
+}
