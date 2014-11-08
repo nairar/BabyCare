@@ -23,22 +23,22 @@
                     	Login <b class="glyphicon glyphicon-user"></b>
                     	<ul>
 	                        <li>
-	                        	<form class="form-login form-style">
+	                        	<form class="form-login form-style" method="POST" action="/login">
 		                        	<div class="loginForm">
-		                        		<input class="login inset" placeholder="username/email id">
-		                        		<input type="password" class="login inset" placeholder="password">
-		                        		<span><a href="#" class="go">&rarr;</a></span>
+		                        		<input class="login inset" placeholder="username/email id" name="email">
+		                        		<input type="password" class="login inset" placeholder="password" name="password">
+		                        		<span><input type="submit" class="go" value="&rarr;"/></span>
 		                        	</div>
 	                        		<div class="loginRadio">
 	                        			<label>Login type: </label>
-		                        		<input type="radio" name="radioLogin" value="baby">BabyCare</input>
-		                        		<input type="radio" name="radioLogin" value="facebook">
-		                        			<img src="images/facebook_icon.ico" class="icon"></a>
-		                        		</input>
-		                        		<input type="radio" name="radioLogin" value="google">
-		                        			<img src="images/google.ico" class="icon"></a>
-		                        		</input>
+		                        		<input type="radio" name="radioLogin" value="local-login">BabyCare</input>
+		                        		<a href="/auth/facebook" class="btn btn-primary btn-xs">
+		                        			<img src="images/facebook_icon.ico" class="icon"> Facebook
+		                        		</a>
+		                        		<a href="/auth/google" class="btn btn-danger btn-xs">
+		                        			<img src="images/google.ico" class="icon">Google</a>
 	                        		</div>
+	                        		
 	                        	</form>
 	                        </li>
 	                    </ul>

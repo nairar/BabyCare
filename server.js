@@ -1,28 +1,31 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var passport = require('passport');
-var configurePassport = require('./public/auth/passport.js');
 var flash    = require('connect-flash');
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
 var bodyParser   = require('body-parser');
 var routes = require('./routes/routeToService.js');
+
 var mongodb = require('./services/db.js');
+var configurePassport = require('./public/auth/passport.js');
 
 //Initialize express App
 var app = express();
 
 //Connect to DB
-mongoose.connect(mongodb.url);
+mongoose.connect(mongodb.url, function (err) {
+	if (err) console.log(err);
+	console.log("Connected to MongoDB");	
+});
 
 
 //Configure passport using passport.js
+console.log("Passport initializing...");
 configurePassport(passport);
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 4200;
-
-app.use('/', express.static(__dirname + '/public'));
 
 //Cookie parser
 app.use(cookieParser());
@@ -30,6 +33,12 @@ app.use(cookieParser());
 //Body parser
 app.use(bodyParser());
 
+//Set up template engine
+app.set('view engine', 'ejs'); // set up ejs for templating
+
+console.log(__dirname);
+app.use('/', express.static(__dirname + '/public'));
+app.set('views', __dirname + '/public/views');
 //Session (for passport)
 app.use(session({secret: 'deepsurge'}));
 

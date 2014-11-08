@@ -8,7 +8,7 @@ var serveRoutes = function(app, passport) {
 
 	/* Route to the main index page */
 	app.get('/', function (req, res) {
-		res.sendfile("Main.html");
+		res.render("../../Main.ejs");
 	});
 
 	/* Get environment variables of current system */
@@ -22,12 +22,12 @@ var serveRoutes = function(app, passport) {
 
 	//Login requests and sign-up requests
 	app.get('/signup', function (req, res) {
-		res.sendfile('./public/views/signUp.html');
+		res.render('signUp.ejs',{ message: req.flash('signupMessage') });
 	});
 
 	//Lead the user to the profile page
 	app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.html', {
+        res.render('profile.ejs', {
             user : req.user // get the user out of session and pass to template
         });
     });
@@ -48,8 +48,32 @@ var serveRoutes = function(app, passport) {
 		failureFlash: true
 	}));
 
+	//Login if user is present - serve the profile page on login
+	app.post('/login', passport.authenticate('local-login', {
+			successRedirect: '/profile',
+			failureRedirect: '/',
+			failureFlash: true
+		}));
+
+	//Facebook login serve request - GET
+	app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
+    // handle the callback after facebook has authenticated the user
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect : '/profile',
+            failureRedirect : '/'
+        }));
+
+
 
 }
+
+
+	/*function localLogin(req, res, passport) {
+		;
+	}
+*/
 
 	//First check whether user is already created in db and then log him in.
 	// If session has timed out or user has not authenticated properly or user not present,

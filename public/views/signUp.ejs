@@ -12,10 +12,13 @@
 	<body>
 		<div class="container exactCenter">
 			<form method="POST" action="/createUser">
-				<input class="flow-control pad" placeholder="Email">
-				<input class="flow-control pad" placeholder="Password">
+				<input type="email" name="email" class="flow-control pad" placeholder="Email">
+				<input type="password" name="password" class="flow-control pad" placeholder="Password">
 				<input type="submit" class="btn btn-primary btn-signup pad" value="Create">
 			</form>
+			<% if (message.length > 0) { %>
+			       <div class="alert alert-danger"><%= message %></div>
+			<% } %>
 		</div>
 	</body>
 </html>
