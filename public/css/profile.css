@@ -1,0 +1,88 @@
+
+/*----------------------------------------Navigation design-----------------------------------------------*/
+
+nav {
+    position: relative;
+    margin-top: 20px;
+    margin-left: -50px;
+    cursor: pointer;
+}
+
+    nav ul {
+        background: radial-gradient(#5e5454, #9b9797);
+        position: relative;
+        display: inline-block;
+        border-radius: 10px;
+        list-style: none;
+        color: white;
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-bottom: 0px;
+        padding: 0 10px 0 10px;
+        box-shadow: 0 0 10px #393434;
+    }
+
+        nav ul li {
+            float: left;
+            padding: 10px;
+        }
+
+            nav ul li:hover {
+                background: #635a5a;
+            }
+
+    .logout {
+        color: white;
+        text-decoration: none;
+    }
+
+        /*------------------------------------Sub-menu design--------------------------------------*/
+
+        nav ul ul {
+            display: none;
+        }
+
+        nav ul li:hover > ul {
+            float: none;
+            position: absolute;
+            top: 100%;
+            display: block;
+            border-radius: 0px;
+            padding: 0;
+            margin-top: 0px;
+            margin-left: 0px;
+            margin-bottom: 0px;
+        }
+
+        nav ul ul li {
+            float: none;
+        }
+
+
+
+/*----------------------------------------<Mascot Design>-------------------------------------------------*/
+
+@media (max-width:331px){
+    .mascot{
+        width : 100%;
+    }
+}
+
+.mascot {
+    font-weight: bold;
+    font-family: Cambria;
+    font-size: x-large;
+    text-shadow: 0 0 3px;
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+    border-bottom: 0;
+    color: #f3921b;
+}
+
+    .mascot:hover {
+        color: #00ff21;
+        background: none;
+    }
+
+

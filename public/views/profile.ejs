@@ -6,15 +6,35 @@
 		<script type="application/javascript" src="../js/angular-route.min.js"></script>
 		<link rel="stylesheet" href="../bootstrap-3.2.0-dist/css/bootstrap.min.css">
 		<link rel="stylesheet" href="./css/Main.css">
+		<link rel="stylesheet" href="./css/profile.css">
 
 	</head>
 	<body>
 		<div class="container">
-			<h1>Logged in</h1>
+	        <nav>
+	            <ul>
+	                <li class="mascot">BabyCare</li>
+	                <li>
+	                    Home<b class="caret"></b>
+	                    <ul>
+	                        <li>About</li>
+	                        <li>BabyCare Help</li>
+	                        <li>Contact Us</li>
+	                    </ul>
+	                </li>
+	                <li>
+	                    Services<b class="caret"></b>
+	                    <ul>
+	                        <li>Sell</li>
+	                        <li>Buy</li>
+	                        <li>Create and save</li>
+	                    </ul>
+	                </li>
+	            </ul>
+	            <ul class="pull-right">
+	            	<a href="/logout" class="rounded logout"><img src="../images/logout.png" />Logout</button>
+	            </ul>
+	        </nav>
 		</div>
-		<div class="container pull-right">
-			<a href="/logout" class="rounded"><img src="../images/logout.png" />Logout</button>
-		</div>
-
 	</body>
 </html>
