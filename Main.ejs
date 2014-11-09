@@ -38,10 +38,16 @@
 		                        		<a href="/auth/google" class="btn btn-danger btn-xs">
 		                        			<img src="images/google.ico" class="icon">Google</a>
 	                        		</div>
-	                        		
 	                        	</form>
 	                        </li>
 	                    </ul>
+                    </li>
+                    <li>
+                    	<div>
+                    		<% if (message.length > 0) { %>
+                    		       <div class="alert"><%= message %></div>
+                    		<% } %>
+                    	</div>
                     </li>
                     <li class="loginUL">
                     	<a href="/signup">Sign Up</a>
