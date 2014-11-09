@@ -8,7 +8,9 @@ var serveRoutes = function(app, passport) {
 
 	/* Route to the main index page */
 	app.get('/', function (req, res) {
-		res.render("../../Main.ejs");
+
+		res.render("../../Main.ejs");	
+
 	});
 
 	/* Get environment variables of current system */
