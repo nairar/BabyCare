@@ -1,20 +1,25 @@
 body {
-	background: url("../images/Laughing-Baby-Boy.jpg") no-repeat center center fixed ;
+	background: url("../images/Laughing-Baby-Boy.jpg") no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+
+	font-family: Calibri;
 }
+
+
 .nav-div {
 	background-color: #222222;
 	height: 40px;
-
+	position: fixed;
+	width: 100%;
+	z-index: 10;
 }
 
 navbar {
 	position: fixed;
 	width: 100%;
-
 }
 
 navbar ul {
@@ -38,7 +43,6 @@ navbar ul li ul li:hover {
 navbar ul li {
 	float: left;
 	padding-right: 25px;
-	font-family: Arial;
 	font-weight: bold;
 	font-size: large;
 	color: #999999;
@@ -59,7 +63,7 @@ navbar ul li ul {
 navbar ul li:hover > ul {
 	display: block;
 	position: absolute;
-	float: none;
+	float: none;	
 }
 
 navbar ul li:hover > ul li {
@@ -107,7 +111,6 @@ navbar ul li:hover > ul li {
 	height: 24px;
 	cursor: text;
 	color: white;
-	font-family: Arial;
 	font-weight: normal;
 	-webkit-user-select: cursor;
 	border-style: none;
@@ -162,8 +165,7 @@ navbar ul li:hover > ul li {
 }
 
 .knowUsUL {
-	padding-right: 10px;
-	padding-left: 10px;
+
 }
 
 
@@ -183,7 +185,6 @@ navbar ul li:hover > ul li {
 	font-weight: 100;
 	font-size: 12px;
 	border-style: none;
-	font-family: Arial;
 	background-color: #222222;	
 	border-top: 0px;
 	border-right: 2px;
@@ -195,7 +196,6 @@ navbar ul li:hover > ul li {
 	position: absolute;
 	font-size: 0.7em;
 	font-weight: normal;
-	font-family: Arial;
 	background-color: #222222;
 	width: 100%;
 }
@@ -226,4 +226,102 @@ input[type="radio"] {
 	padding-left: 2px;
 	margin-right: 2px;
 	margin-top: 0;
+}
+
+
+
+/***********************Product display**************************/
+
+@media (min-width: 768px) {
+	.homePageNavOptions {
+		padding-top: 100px;
+	}
+
+	.homePageNavOptions ul {
+		list-style: none;
+		border: 1px solid black;
+		border-top: 0px;
+		border-left: 0px;
+		border-right: 0px;
+		border-bottom: 0px;
+		width: 15%;
+		text-align: left;
+		padding-left: 10px;
+		box-shadow: 3px 3px 15px;
+		font-weight: bold;
+
+	}
+
+	.homePageNavOptions ul li a {
+		text-decoration: none;
+		color: black;
+	}
+
+	.homePageNavOptions ul:hover {
+		background-color: lightgreen;
+		cursor: pointer;
+		box-shadow: 3px 3px 8px;
+		text-decoration: none;
+	}
+
+	.homePageNavOptions .productCards {
+		width: 300px;
+		font-size: 15px;
+		height: 200px;
+	}
+
+	.productCards {
+		float: none;
+		position: relative;
+	}
+}
+
+@media (max-width: 768px) {
+	.nav-div {
+		background-color: #222222;
+		height: 130px;
+		position: fixed;
+		width: 100%;
+	}
+
+
+	.homePageNavOptions {
+		padding-top: 150px;
+		padding-left: 40px;
+	}
+
+	.homePageNavOptions ul li a {
+		text-decoration: none;
+		color: black;
+	}
+
+	.homePageNavOptions ul {
+		list-style: none;
+		border: 1px solid black;
+		border-top: 0px;
+		border-left: 0px;
+		border-right: 0px;
+		border-bottom: 0px;
+		width: 90%;
+		text-align: left;
+		padding-left: 2px;
+		padding-right: 0px;
+		box-shadow: 3px 3px 15px;
+		font-weight: bold;
+		background-color: lightgray;
+		opacity: 20%;
+
+	}
+
+	.homePageNavOptions ul:hover {
+		background-color: lightgreen;
+		cursor: pointer;
+	}
+
+
+	.homePageNavOptions .productCards {
+		width: 200px;
+		font-size: 15px;
+		height: 300px;
+	}
 }

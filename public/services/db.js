@@ -9,7 +9,8 @@ if (process.env.OPENSHIFT_MONGODB_DB_URL) {
  	var url = 'mongodb://localhost:27018/BabyCare';
  }
 
-var userCollection = mongoConnectionClient.db('userDB');
+var products = mongoConnectionClient.db('products');
 
-exports.userCollection = userCollection;
+exports.mongoose = mongoose;
+exports.products = products;
 exports.url = url;

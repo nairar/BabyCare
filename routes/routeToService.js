@@ -1,4 +1,4 @@
-var signUp = require('./signUp.js');
+var crud = require('../public/services/crud.js');
 
 var serveRoutes = function(app, passport) {
 
@@ -8,9 +8,7 @@ var serveRoutes = function(app, passport) {
 
 	/* Route to the main index page */
 	app.get('/', function (req, res) {
-
-		res.render("../../Main.ejs", { message: req.flash('loginMessage') });	
-
+		res.render("Main.ejs", { message: req.flash('loginMessage') });				
 	});
 
 	/* Get environment variables of current system */
@@ -68,9 +66,15 @@ var serveRoutes = function(app, passport) {
             failureRedirect : '/'
         }));
 
+/*================================================Get baby products=================================================*/
 
+	app.get('/getProducts', crud.getProducts);
+	app.get('/getProductsByCategory/:categoryNode', function (req, res) {
+		crud.selectByCategoryNode(req.params.categoryNode, req, res);
+	});
 
 }
+
 
 
 	/*function localLogin(req, res, passport) {

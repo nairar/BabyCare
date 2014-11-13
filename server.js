@@ -7,7 +7,7 @@ var session      = require('express-session');
 var bodyParser   = require('body-parser');
 var routes = require('./routes/routeToService.js');
 
-var mongodb = require('./services/db.js');
+var mongodb = require('./public/services/db.js');
 var configurePassport = require('./public/auth/passport.js');
 
 //Initialize express App
@@ -31,7 +31,8 @@ var port      = process.env.OPENSHIFT_NODEJS_PORT || 4200;
 app.use(cookieParser());
 
 //Body parser
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({ extended: false }))
+
 
 //Set up template engine
 app.set('view engine', 'ejs'); // set up ejs for templating

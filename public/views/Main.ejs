@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html ng-app="T800" xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="BabyCare">
 	<head>
-		<title>T800 App</title>
+		<title>Baby Care</title>
 		<script type="application/javascript" src="js/angular.min.js"></script>
 		<script type="application/javascript" src="js/angular-route.min.js"></script>
 		<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css">
@@ -63,7 +63,11 @@
 				</ul>
 			</navbar>
 		</div>
-		<div class="container">
+		<div class="container homePageNavOptions" ng-view>
+			
 		</div>
+		<script src="services/app.js"></script>
+		<script src="controllers/ProductDisplayController.js"></script>
 	</body>
+
 </html>
