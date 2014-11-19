@@ -1,5 +1,5 @@
 app.controller("CategoryDisplayController", ["$scope", "$http", "ProductDisplayService", "$routeParams", function($scope, $http, ProductDisplayService, $routeParams) {
-
+    var websense_block = ['Maternity', 'Sex', 'Porn', 'Lingerie'];
 
     $scope.renderCategories = function(res) {
         var temp = {};
@@ -11,11 +11,13 @@ app.controller("CategoryDisplayController", ["$scope", "$http", "ProductDisplayS
             console.log("Retrieved categories are : " + JSON.stringify(tempVal));
             categoryNode = tempVal.item.categoryNode.split('_');
             temp = tempVal.item.categoryPath.split('/');
-
-            tempScope.push(
+            if (!websense_block.indexOf(temp[1]) > -1) {
+                tempScope.push(
                 {'categoryNode': categoryNode[0]+ '_' + categoryNode[1],
                  'category': temp[1]
-                });
+                });    
+            }
+            
         }
 
         var categories = [], l = tempScope.length;
@@ -66,7 +68,7 @@ app.controller("ProductDisplayController", ["$scope", "$http", "ProductDisplaySe
         $scope.products = res.products;
     }
 
-    
+
     var id = JSON.stringify($routeParams);
     console.log("Category from route params:" + id);
 

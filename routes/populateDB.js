@@ -2,7 +2,7 @@ var db = require('../public/services/db.js');
 var http = require('http');
 
 var Product = require('../public/DBSchema/productSchema.js');
-var terms = ['baby food', 'toys', 'huggies', 'diapers', 'baby apparels', 'baby soap', 'baby shampoo', 'breast pump', 'pacifier', 'teether'];
+var terms = ['baby', 'baby food', 'toys', 'huggies', 'diapers'];
 
 var getAllData = function(req,res)
 { 
