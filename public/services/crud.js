@@ -20,7 +20,8 @@ var selectByCategoryNode = function(category_id, req, res) {
 		console.log("Connected to MongoDB to select products in a category");
 		var obj = JSON.parse(category_id);
 		console.log("Mongo: Checking categoryNode value: " + JSON.stringify(obj.categoryNode));
-		Product.find({"categoryNode": {$regex: ".*"+obj.categoryNode+".*"}}, function(err, products) {
+		Product.find({"item.categoryNode": {$regex: ".*"+obj.categoryNode+".*"}}, function(err, products) {
+			console.log("Mongo: Products for given category were found to be : " + products);
 			res.products = products;
 			//console.log("Mongo: Products in a category:" + products);
 			res.json({products: products});

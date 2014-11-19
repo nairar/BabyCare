@@ -8,8 +8,9 @@ app.controller("CategoryDisplayController", ["$scope", "$http", "ProductDisplayS
         var categoryNode = {};
         for (var i=0; i<res.products.length; i++) {
             tempVal = res.products[i];
-            categoryNode = tempVal.categoryNode.split('_');
-            temp = tempVal.categoryPath.split('/');
+            console.log("Retrieved categories are : " + JSON.stringify(tempVal));
+            categoryNode = tempVal.item.categoryNode.split('_');
+            temp = tempVal.item.categoryPath.split('/');
 
             tempScope.push(
                 {'categoryNode': categoryNode[0]+ '_' + categoryNode[1],
@@ -65,7 +66,7 @@ app.controller("ProductDisplayController", ["$scope", "$http", "ProductDisplaySe
         $scope.products = res.products;
     }
 
-
+    
     var id = JSON.stringify($routeParams);
     console.log("Category from route params:" + id);
 

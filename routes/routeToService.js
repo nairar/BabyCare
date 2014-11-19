@@ -1,13 +1,20 @@
 var crud = require('../public/services/crud.js');
 
+//temp operation to populate db during initialization
+var pop = require('./populateDB.js');
+
 var serveRoutes = function(app, passport) {
 
 
 //Basic routes
 /*==========================================================*/
 
+	//temp operation to populate database
+	app.get('/populate', pop.generateData);
+
 	/* Route to the main index page */
 	app.get('/', function (req, res) {
+
 		res.render("Main.ejs", { message: req.flash('loginMessage') });				
 	});
 
