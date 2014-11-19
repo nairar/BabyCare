@@ -55,6 +55,7 @@ var serveRoutes = function(app, passport) {
 		failureFlash: true
 	}));
 
+
 	//Login if user is present - serve the profile page on login
 	app.post('/login',
 	 passport.authenticate('local-login', {

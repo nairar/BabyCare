@@ -40,14 +40,14 @@ module.exports = function (passport) {
 
             // asynchronous
             // User.findOne wont fire unless data is sent back
-            console.log("Checking user");
+            
             process.nextTick(function() {
-
+                
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
             User.findOne({ 'local.email' :  email }, function(err, user) {
                 // if there are any errors, return the error
-
+                console.log("Checking user");
                 if (err)
                     return done(err);
 
@@ -91,6 +91,7 @@ module.exports = function (passport) {
                 // find a user whose email is the same as the forms email
                 // we are checking to see if the user trying to login already exists
                 User.findOne({ 'local.email' :  email }, function(err, user) {
+                    console.log("Checking user for local login");
                     // if there are any errors, return the error before anything else
                     if (err)
                         return done(err);

@@ -19,11 +19,6 @@ mongoose.connect(mongodb.url, function (err) {
 	console.log("Connected to MongoDB");	
 });
 
-
-//Configure passport using passport.js
-console.log("Passport initializing...");
-configurePassport(passport);
-
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 4200;
 
@@ -33,6 +28,10 @@ app.use(cookieParser());
 //Body parser
 app.use(bodyParser.urlencoded({ extended: false }))
 
+//Configure passport using passport.js
+console.log("Passport initializing...");
+configurePassport(passport);
+
 
 //Set up template engine
 app.set('view engine', 'ejs'); // set up ejs for templating
@@ -41,7 +40,7 @@ console.log(__dirname);
 app.use('/', express.static(__dirname + '/public'));
 app.set('views', __dirname + '/public/views');
 //Session (for passport)
-app.use(session({secret: 'deepsurge'}));
+app.use(session({secret: 'calculatedSurge'}));
 
 //Initialize passport
 app.use(passport.initialize());

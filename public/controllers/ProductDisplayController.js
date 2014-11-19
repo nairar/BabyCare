@@ -75,3 +75,4 @@ app.controller("ProductDisplayController", ["$scope", "$http", "ProductDisplaySe
     ProductDisplayService.selectByCategoryNode(id, $scope.renderProductsInCategory);
 
 }]);
+

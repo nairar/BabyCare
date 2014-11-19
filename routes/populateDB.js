@@ -16,9 +16,10 @@ var getAllData = function(req,res)
 			console.log(query);
 		}
 	}
+	
 }
 
-var generateData1 = function(query, callback) {
+var generateData1 = function(query) {
 	var request;
 	var str = '';
 	var completed_request = 0;	
@@ -34,25 +35,6 @@ var generateData1 = function(query, callback) {
 
 		});
 	}).end();
-	
-}
-
-var generateData = function() {
-	var request;
-	var str = '';
-	var completed_request = 0;	
-	var responses = [];
-	
-	http.get('http://walmartlabs.api.mashery.com/v1/search?format=json&categoryId=5427&apiKey=nf29te4xjwrkv8bub2sxqjx2&query=baby&start=11', function(res) {
-		res.on('data', function (chunk) {
-			str+=chunk;
-		});
-
-		res.on('end', function() {
-			populate(str);
-
-		});
-	});
 	
 }
 
