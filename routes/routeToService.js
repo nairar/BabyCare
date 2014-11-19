@@ -10,7 +10,7 @@ var serveRoutes = function(app, passport) {
 /*==========================================================*/
 
 	//temp operation to populate database
-	app.get('/populate', pop.generateData);
+	app.get('/populate', pop.getAllData);
 
 	/* Route to the main index page */
 	app.get('/', function (req, res) {
