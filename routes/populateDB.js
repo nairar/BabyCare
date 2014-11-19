@@ -41,8 +41,8 @@ var generateData1 = function(query) {
 
 var populate = function(str) {
 	
-	db.mongoose.connect(db.url, function() {
-		console.log("Connected to db for population");
+	
+		
 			/*console.log(res.items);*/
 		var data = JSON.parse(str);
 		if (data.items != undefined) {
@@ -64,6 +64,7 @@ var populate = function(str) {
 					    numReviews			: data.items[i].numReviews
 					}
 				});
+				console.log("Connected to db for population");
 				//console.log(newProduct);
 				newProduct.save(function(err, data) {
 					if (err) console.log(err);
@@ -72,7 +73,7 @@ var populate = function(str) {
 			}
 		}
 			console.log("Saved products to database");		
-	});
+
 }
 
 

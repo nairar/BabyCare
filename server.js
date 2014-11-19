@@ -22,16 +22,28 @@ mongoose.connect(mongodb.url, function (err) {
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 4200;
 
+//Session (for passport)
+app.use(session({secret: 'calculatedSurge', 
+                 saveUninitialized: true,
+                 resave: true}));
+
 //Cookie parser
 app.use(cookieParser());
 
 //Body parser
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 //Configure passport using passport.js
 console.log("Passport initializing...");
 configurePassport(passport);
 
+//Initialize passport
+app.use(passport.initialize());
+//Persist login sessions
+app.use(passport.session());
+//Setup connect flash for use
 
 //Set up template engine
 app.set('view engine', 'ejs'); // set up ejs for templating
@@ -39,14 +51,8 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 console.log(__dirname);
 app.use('/', express.static(__dirname + '/public'));
 app.set('views', __dirname + '/public/views');
-//Session (for passport)
-app.use(session({secret: 'calculatedSurge'}));
 
-//Initialize passport
-app.use(passport.initialize());
-//Persist login sessions
-app.use(passport.session());
-//Setup connect flash for use
+
 app.use(flash());
 
 routes.serveRoutes(app, passport);
