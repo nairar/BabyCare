@@ -9,7 +9,6 @@ var getProducts = function(req, res) {
 				res.products = products;
 				//console.log(JSON.stringify(products));
 				res.json({products: products});
-				db.mongoose.disconnect();
 		});
 	
 }
