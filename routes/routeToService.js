@@ -76,10 +76,10 @@ var serveRoutes = function(app, passport) {
 
 /*================================================Get baby products=================================================*/
 
-	//app.get('/getProducts', crud.getProducts);
-	/*app.get('/getProductsByCategory/:categoryNode', function (req, res) {
+	app.get('/getProducts', crud.getProducts);
+	app.get('/getProductsByCategory/:categoryNode', function (req, res) {
 		crud.selectByCategoryNode(req.params.categoryNode, req, res);
-	});*/
+	});
 
 }
 
