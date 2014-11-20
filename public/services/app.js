@@ -1,6 +1,7 @@
 var app = angular.module('BabyCare',['ngRoute']);
 
 app.factory("ProductDisplayService", function ($http) {
+	var currentlyDisplayedProduct = undefined;
 	/*var create = function(employee, callback) {
 		 
 	} 
@@ -25,11 +26,29 @@ app.factory("ProductDisplayService", function ($http) {
 		$http.put ('/employees/'+id, employee).success(callback);
 	}
 */
+	var saveProductDetailsExtended = function(product, callback) {
+		if (product != undefined) {
+			$http.get('/getItem/'+product.item.itemId).success(function (res){
+				currentlyDisplayedProduct = res;
+				callback();
+				console.log("Currently saved product: " + JSON.stringify(currentlyDisplayedProduct));
+			});
+			
+		}
+	}
+
+	var getProductDetailsExtended = function() {
+		return currentlyDisplayedProduct;
+	}
+
+
 	return {
 		/*"create" : create 
 		"selectOne": selectOne,*/
 		"selectAll": selectAll,
-		"selectByCategoryNode": selectByCategoryNode
+		"selectByCategoryNode": selectByCategoryNode,
+		"saveProductDetailsExtended": saveProductDetailsExtended,
+		"getProductDetailsExtended": getProductDetailsExtended
 		/*"remove": remove,
 		"update": update*/
 
@@ -46,6 +65,10 @@ app.config(['$routeProvider',
         when('/getProductsByCategory/:categoryNode', {
             templateUrl: 'views/listProductsInCategory.ejs',
             controller: 'ProductDisplayController'
+        }).
+        when('/getProductDetailsExtended', {
+            templateUrl: 'views/productExpand.ejs',
+            controller: 'ItemController'
         });
   }
 ]);

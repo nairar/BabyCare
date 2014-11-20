@@ -1,0 +1,122 @@
+.Image {
+	width: 200;
+	height: 30px;
+	background-size: contain;
+	margin-top: 20px;
+	margin-right: 15px;
+}
+
+.productCards li div span img{
+	margin-top: 10px;
+	box-shadow: 0 0 4px;
+}
+
+img {
+	vertical-align: text-top;
+}
+
+.productDescription {
+	margin-top: 10px;
+	margin-left: 2px;
+	margin-right: 2px;
+	background-color: skyblue;
+	box-shadow: 0 0 4px;
+}
+
+@media(min-width: 768px) {
+	.productDescExtended {
+		width: 50%;
+		border: 1px solid black;
+		background: rgb(0, 0, 0) transparent;
+	    /* RGBa with 0.6 opacity */
+	    background: rgba(0, 0, 0, 0.6);
+	    /* For IE 5.5 - 7*/
+	    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+	    /* For IE 8*/
+	    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+		color: white;
+
+		box-shadow: 0 0 20px black;
+		padding-lefT: 10px;
+	}
+
+	.productImage {
+		width: 300px;
+		height: auto;
+		box-shadow: 0 0 30px orange;
+		margin-top: 10px;
+	}
+}
+
+@media(max-width: 768px) {
+	.productDescExtended {
+		width: 100%;
+		border: 1px solid black;
+		background: rgb(0, 0, 0) transparent;
+	    /* RGBa with 0.6 opacity */
+	    background: rgba(0, 0, 0, 0.6);
+	    /* For IE 5.5 - 7*/
+	    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+	    /* For IE 8*/
+	    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+		color: white;
+
+		box-shadow: 0 0 20px black;
+		padding-lefT: 5px;
+		padding-right: 5px;
+	}
+
+	.productImage {
+		width: 150px;
+		height: auto;
+		box-shadow: 0 0 30px orange;
+		margin-top: 10px;
+	}
+}
+
+
+
+/*=============================Tool Tip For Comments==============================*/
+
+a[bubbletooltip]:link, a[bubbletooltip]:visited
+{
+        text-decoration: none;
+        position: relative;
+        color : black;
+}
+
+a[bubbletooltip]:before
+{
+        content: "";
+        position: absolute;
+        border-top: 21px solid #97a5db;
+        border-left: 21px solid transparent;
+        border-right: 21px solid transparent;
+        visibility: hidden;
+        top: -20px;
+        left: -12px;
+}
+
+a[bubbletooltip]:after
+{
+        position: absolute;
+        content: attr(bubbletooltip);
+        color: #FFF;
+        font-weight:bold;
+        top: -35px;
+        left: -26px;
+        white-space: nowrap;
+        background: black;
+        padding: 5px 10px;
+        -moz-border-radius: 6px;
+        -webkit-border-radius:6px;
+        -khtml-border-radius:6px;
+        border-radius: 6px;
+        visibility: hidden;
+}
+
+a[bubbletooltip]:hover:before, a[bubbletooltip]:hover:after
+{
+        visibility: visible;
+        -moz-transition: visibility 0s linear .3s;
+}

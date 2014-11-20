@@ -59,7 +59,7 @@ app.controller("CategoryDisplayController", ["$scope", "$http", "ProductDisplayS
     
 }]);
 
-app.controller("ProductDisplayController", ["$scope", "$http", "ProductDisplayService", "$routeParams", function($scope, $http, ProductDisplayService, $routeParams) {
+app.controller("ProductDisplayController", ["$scope", "$http", "ProductDisplayService", "$routeParams", "$location", function($scope, $http, ProductDisplayService, $routeParams, $location) {
 
     // Select by category 
     $scope.renderProductsInCategory = function (res) {
@@ -68,11 +68,26 @@ app.controller("ProductDisplayController", ["$scope", "$http", "ProductDisplaySe
         $scope.products = res.products;
     }
 
-
     var id = JSON.stringify($routeParams);
     console.log("Category from route params:" + id);
 
     ProductDisplayService.selectByCategoryNode(id, $scope.renderProductsInCategory);
 
+    $scope.displayItemDetails = function (product, view) {
+        
+        ProductDisplayService.saveProductDetailsExtended(product, function(req, res) {
+            $location.path(view);
+        });
+    }
+
 }]);
 
+app.controller("ItemController", ["$scope", "$http", "ProductDisplayService", "$routeParams", "$location", function($scope, $http, ProductDisplayService, $routeParams, $location) {
+
+    $scope.all = function() {
+        $scope.toFixed = Number.prototype.toFixed;
+        $scope.product = ProductDisplayService.getProductDetailsExtended();
+    }
+
+    $scope.all();
+}]);

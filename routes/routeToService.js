@@ -80,6 +80,7 @@ var serveRoutes = function(app, passport) {
 	app.get('/getProductsByCategory/:categoryNode', function (req, res) {
 		crud.selectByCategoryNode(req.params.categoryNode, req, res);
 	});
+	app.get('/getItem/:product_id', pop.getProduct);
 
 }
 

@@ -10,16 +10,16 @@ var getAllData = function(req,res)
 		var term = terms[count];
 		for(count1 = 0; count1 < 10; count1++) {
 			start = count1 * 10 + 1;
-			var query = 'http://walmartlabs.api.mashery.com/v1/search?format=json&categoryId=5427&apiKey=nf29te4xjwrkv8bub2sxqjx2&'
+			var query = 'http://walmartlabs.api.mashery.com/v1/search?format=json&categoryId=5427&apiKey=nf29te4xjwrkv8bub2sxqjx2&';
 			query+= 'query='+term+'&'+'start='+ start;
 			generateData1(query);
-			console.log(query);
+			console.log(query, populate);
 		}
 	}
 	
 }
 
-var generateData1 = function(query) {
+var generateData1 = function(query, callback) {
 	var request;
 	var str = '';
 	var completed_request = 0;	
@@ -31,7 +31,8 @@ var generateData1 = function(query) {
 		});
 
 		res.on('end', function() {
-			populate(str);
+			console.log(str);
+			callback(str);
 
 		});
 	}).end();
@@ -77,4 +78,21 @@ var populate = function(str) {
 }
 
 
+
+var getProduct = function(req, res) {
+	console.log("Entered get product");
+	var query = 'http://api.walmartlabs.com/v1/items/'+req.params.product_id+'?apiKey=nf29te4xjwrkv8bub2sxqjx2&format=json';
+	generateData1(query, function (product) {
+		console.log("Received new product :" + JSON.stringify(product));
+		product = JSON.parse(product);
+		console.log(product);
+		res.json(product);
+		/*Product.update( { "itemId": product_id }, { $set: { "largeImage": res.body.largeImage } }, { upsert: true }, function(){
+
+		});*/
+	});
+}
+
+
 exports.getAllData = getAllData;
+exports.getProduct = getProduct;

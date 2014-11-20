@@ -267,8 +267,9 @@ input[type="radio"] {
 	.homePageNavOptions .productCards {
 		width: 300px;
 		font-size: 15px;
-		height: 200px;
+		height: 300px;
 	}
+
 
 	.productCards {
 		float: none;
