@@ -1,5 +1,5 @@
 var crud = require('../public/services/crud.js');
-
+var checkLogin = require('auth/checkLogin.js');
 //temp operation to populate db during initialization
 var pop = require('./populateDB.js');
 
@@ -33,7 +33,7 @@ var serveRoutes = function(app, passport) {
 	});
 
 	//Lead the user to the profile page
-	app.get('/profile', isLoggedIn, function(req, res) {
+	app.get('/profile', checkLogin.isLoggedIn, function(req, res) {
         res.render('profile.ejs', {
             user : req.user // get the user out of session and pass to template
         });
@@ -91,18 +91,6 @@ var serveRoutes = function(app, passport) {
 	}
 */
 
-	//First check whether user is already created in db and then log him in.
-	// If session has timed out or user has not authenticated properly or user not present,
-	//redirect to home page
-	function isLoggedIn(req, res, next) {
-
-	    // if user is authenticated in the session, carry on 
-	    if (req.isAuthenticated())
-	        return next();
-
-	    // if they aren't redirect them to the home page
-	    res.redirect('/');
-	}
 
 
 
