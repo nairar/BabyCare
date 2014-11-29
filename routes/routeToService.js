@@ -1,5 +1,5 @@
 var crud = require('../public/services/crud.js');
-var checkLogin = require('auth/checkLogin.js');
+var checkLogin = require('../public/auth/checkLogin.js');
 //temp operation to populate db during initialization
 var pop = require('./populateDB.js');
 
