@@ -6,13 +6,13 @@ var User = require('../DBSchema/authSchema.js');
 var configAuth = require('./auth.js');
 
 module.exports = function (passport) {
-	  // =========================================================================
+      // =========================================================================
     // passport session setup ==================================================
     // =========================================================================
     // required for persistent login sessions
     // passport needs ability to serialize and unserialize users out of session
 
-    // used to serialize the user for the session
+     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
         done(null, user.id);
     });
@@ -87,11 +87,10 @@ module.exports = function (passport) {
                 passReqToCallback : true // allows us to pass back the entire request to the callback
             },
             function(req, email, password, done) { // callback with email and password from our form
-                console.log("Checking user for local login: \n" + JSON.stringify(req.body));
+                console.log("Email: " + email +" | " + "password: " + password);
                 // find a user whose email is the same as the forms email
                 // we are checking to see if the user trying to login already exists
                 User.findOne({ 'local.email' :  email }, function(err, user) {
-                    
                     // if there are any errors, return the error before anything else
                     if (err)
                         return done(err);
@@ -99,6 +98,7 @@ module.exports = function (passport) {
                     // if no user is found, return the message
                     if (!user)
                         return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
+
 
                     // if the user is found but the password is wrong
                     if (!user.validPassword(password))

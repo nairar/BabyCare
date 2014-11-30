@@ -2,6 +2,7 @@ var crud = require('../public/services/crud.js');
 var checkLogin = require('../public/auth/checkLogin.js');
 //temp operation to populate db during initialization
 var pop = require('./populateDB.js');
+var url = require ('url');
 
 var serveRoutes = function(app, passport) {
 
@@ -18,9 +19,21 @@ var serveRoutes = function(app, passport) {
 		res.render("Main.ejs", { message: req.flash('loginMessage') });				
 	});
 
+
 	/* Get environment variables of current system */
 	app.get('/env', function (req, res) {
 		res.send(process.env);
+	});
+
+	app.get('/getUser', function (req, res) {
+		if (req.user) {
+			res.json ( {user : {
+				email : req.user.local.email,
+				isLoggedIn : true
+			}});
+		} else res.json ({user : 
+			{email : 'Login', isLoggedIn : false}
+		});
 	});
 
 
@@ -42,6 +55,7 @@ var serveRoutes = function(app, passport) {
 	//Log the user out
 	app.get('/logout', function(req, res) {
         req.logout();
+        req.user = undefined;
         res.redirect('/');
     });
 
@@ -50,19 +64,25 @@ var serveRoutes = function(app, passport) {
 	//so that the "new user" can try to login the next time when he tries to.
 	app.post('/createUser', passport.authenticate('local-signup', {
 
-		successRedirect: '/profile', //Go to profile page if authenticated
-		failureRedirect: '/signup',
+		successRedirect: '/getUser', 
+		failureRedirect: '/getUser',
 		failureFlash: true
 	}));
 
 
+	//Handling local authentication failure
+	app.get('/handleAuthFail_Local', function (req, res) {
+		console.log("Server : Authentication failed");
+		res.render('Main.ejs', {message: req.flash('loginMessage')});
+	});
+
 	//Login if user is present - serve the profile page on login
 	app.post('/login',
-	 passport.authenticate('local-login', {
-			successRedirect: '/profile',
-			failureRedirect: '/',
-			failureFlash: true
-		}));
+        passport.authenticate('local-login', {
+            successRedirect : '/getUser',
+            failureRedirect : '/getUser'
+    }));
+
 
 	//Facebook login serve request - GET
 	app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
@@ -70,8 +90,8 @@ var serveRoutes = function(app, passport) {
     // handle the callback after facebook has authenticated the user
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect : '/profile',
-            failureRedirect : '/'
+            successRedirect : '/getUser',
+            failureRedirect : '/getUser'
         }));
 
 /*================================================Get baby products=================================================*/
@@ -82,14 +102,22 @@ var serveRoutes = function(app, passport) {
 	});
 	app.get('/getItem/:product_id', pop.getProduct);
 
+
+
+/*================================================User cart operations==============================================*/
+
+	app.post('/addToCart/:itemId', checkLogin.isLoggedIn, function (req, res, next) {
+		crud.addToCart(req.params.itemId, req, res);
+	});
+
+	app.get('/addToCart', checkLogin.isLoggedIn, function (req, res, next) {
+		res.json({message: "Login successful"});
+	});
+
+
+
 }
 
-
-
-	/*function localLogin(req, res, passport) {
-		;
-	}
-*/
 
 
 

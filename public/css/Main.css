@@ -60,6 +60,11 @@ navbar ul li ul {
 	padding-top: 0;
 }
 
+navbar ul li ul.loginFormUL {
+	padding-right: 10px;
+}
+
+
 navbar ul li:hover > ul {
 	display: block;
 	position: absolute;
@@ -69,7 +74,7 @@ navbar ul li:hover > ul {
 navbar ul li:hover > ul li {
 	float: none;
 	top: 100%;
-	display: block;
+	display: block;;
 }
 
 
@@ -255,6 +260,8 @@ input[type="radio"] {
 	.homePageNavOptions ul li a {
 		text-decoration: none;
 		color: black;
+		width : 100%;
+		display: inline-block;
 	}
 
 	.homePageNavOptions ul:hover {
@@ -272,9 +279,22 @@ input[type="radio"] {
 
 
 	.productCards {
-		float: none;
+		float: left;
 		position: relative;
+
+		border: 5px solid black;
+		background: rgb(0, 0, 0) transparent;
+	    /* RGBa with 0.6 opacity */
+	    background: rgba(0, 0, 0, 0.4);
+	    /* For IE 5.5 - 7*/
+	    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+	    /* For IE 8*/
+	    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+		color: black;
+
+		box-shadow: 0 0 15px black;
 	}
+
 }
 
 @media (max-width: 768px) {
@@ -294,6 +314,8 @@ input[type="radio"] {
 	.homePageNavOptions ul li a {
 		text-decoration: none;
 		color: black;
+		width : 100%;
+		display: inline-block;
 	}
 
 	.homePageNavOptions ul {
@@ -315,7 +337,7 @@ input[type="radio"] {
 	}
 
 	.homePageNavOptions ul:hover {
-		background-color: lightgreen;
+		background-color: orange;
 		cursor: pointer;
 	}
 
@@ -324,5 +346,29 @@ input[type="radio"] {
 		width: 200px;
 		font-size: 15px;
 		height: 300px;
+		border: 5px solid black;
+		background: rgb(0, 0, 0) transparent;
+	    /* RGBa with 0.6 opacity */
+	    background: rgba(0, 0, 0, 0.4);
+	    /* For IE 5.5 - 7*/
+	    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+	    /* For IE 8*/
+	    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+		color: black;
+
+		box-shadow: 0 0 15px black;
 	}
+}
+
+
+
+
+/*******************************Alert Message**********************************/
+
+.alertMessage {
+	border: 3px solid red;
+	color: red;
+	background-color: black;
+	width: 150px;
+	font-size: 20px;
 }

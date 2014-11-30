@@ -1,20 +1,25 @@
-<div class="productDescExtended">
-	<div>
-		<img class="productImage" src="{{product.largeImage}}"/>
+<div>
+	<div ng-if="message.length > 0" class="alertMessage">
+		{{message}}
 	</div>
-	<span>
-		<a href="#" bubbletooltip="Like!"><img class="Image" src="../images/like.jpeg"/></a>
-		<a href="#" bubbletooltip="Add to cart"><img class="Image" src="../images/addtocart.jpeg"/></a>
-	</span>
-	<hr/>
-		<h2> {{product.name}} </h2>
-	<hr/>	
-	<p>
-		<h3><b>Description: </b></h3>{{product.shortDescription}}
-	</p>
-	<hr/>
-	<div>
-		<p><b>Price:</b> ${{product.salePrice}} + Shipping Rate: ${{product.standardShipRate}} 
-		   = ${{(product.salePrice+product.standardShipRate).toFixed(2)}}</p>
+	<div class="productDescExtended">
+		<div>
+			<img class="productImage" src="{{product.largeImage}}"/>
+		</div>
+		<span>
+			<a href="#" bubbletooltip="Like!"><img class="Image" src="../images/like.jpeg"/></a>
+			<a href="#/addToCart/{{product.itemId}}" bubbletooltip="Add to cart"><img class="Image" src="../images/addtocart.jpeg"/></a>
+		</span>
+		<hr/>
+			<h2> {{product.name}} </h2>
+		<hr/>	
+		<p>
+			<h3><b>Description: </b></h3>{{product.shortDescription}}
+		</p>
+		<hr/>
+		<div>
+			<p><b>Price:</b> ${{product.salePrice}} + Shipping Rate: ${{product.standardShipRate}} 
+			   = ${{(product.salePrice+product.standardShipRate).toFixed(2)}}</p>
+		</div>
 	</div>
 </div>

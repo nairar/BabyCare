@@ -22,6 +22,14 @@ mongoose.connect(mongodb.url, function (err) {
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 4200;
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+
+
 //Session (for passport)
 app.use(session({secret: 'calculatedSurge', 
                  saveUninitialized: true,

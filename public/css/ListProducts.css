@@ -25,7 +25,7 @@ img {
 
 @media(min-width: 768px) {
 	.productDescExtended {
-		width: 50%;
+		width: 70%;
 		border: 1px solid black;
 		background: rgb(0, 0, 0) transparent;
 	    /* RGBa with 0.6 opacity */
@@ -37,7 +37,7 @@ img {
 		color: white;
 
 		box-shadow: 0 0 20px black;
-		padding-lefT: 10px;
+		padding-left: 10px;
 	}
 
 	.productImage {
@@ -62,7 +62,7 @@ img {
 		color: white;
 
 		box-shadow: 0 0 20px black;
-		padding-lefT: 5px;
+		padding-left: 5px;
 		padding-right: 5px;
 	}
 

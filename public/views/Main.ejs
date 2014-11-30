@@ -4,6 +4,7 @@
 		<title>Baby Care</title>
 		<script type="application/javascript" src="js/angular.min.js"></script>
 		<script type="application/javascript" src="js/angular-route.min.js"></script>
+		<script type="application/javascript" src="js/jquery-2.1.1.js"></script>
 		<link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/Main.css">
 		<link rel="stylesheet" href="css/ListProducts.css">
@@ -11,7 +12,7 @@
 	</head>
 	<body>
 		<div class="nav-div">
-			<navbar>
+			<navbar ng-controller="UserController">
 				<ul>
 					<li class="mascot">BabyCare</li>
 					<li>
@@ -21,14 +22,14 @@
 						</form>
                     <li>
                     <li class="loginUL">
-                    	Login <b class="glyphicon glyphicon-user"></b>
-                    	<ul>
+                    	{{user.email}}<b class="glyphicon glyphicon-user"></b>
+                    	<ul class="loginFormUL" ng-hide="user.isLoggedIn">
 	                        <li>
-	                        	<form class="form-login form-style" method="POST" action="/login">
+	                        	<form class="form-login form-style">
 		                        	<div class="loginForm">
-		                        		<input class="login inset" placeholder="username/email id" name="email">
+		                        		<input class="login inset" placeholder="email id" name="email">
 		                        		<input type="password" class="login inset" placeholder="password" name="password">
-		                        		<span><input type="submit" class="go" value="&rarr;"/></span>
+		                        		<span><input type="submit" class="go" ng-click="go()" value="&rarr;"/></span>
 		                        	</div>
 	                        		<div class="loginRadio">
 	                        			<label>Login type: </label>
@@ -36,8 +37,8 @@
 		                        		<a href="/auth/facebook" class="btn btn-primary btn-xs">
 		                        			<img src="images/facebook_icon.ico" class="icon"> Facebook
 		                        		</a>
-		                        		<a href="/auth/google" class="btn btn-danger btn-xs">
-		                        			<img src="images/google.ico" class="icon">Google</a>
+		                        		<!-- <a href="/auth/google" class="btn btn-danger btn-xs">
+		                        			<img src="images/google.ico" class="icon">Google</a> -->
 	                        		</div>
 	                        	</form>
 	                        </li>
@@ -50,8 +51,11 @@
                     		<% } %>
                     	</div>
                     </li>
-                    <li class="loginUL">
+                    <li class="loginUL" ng-show="!user.isLoggedIn">
                     	<a href="/signup">Sign Up</a>
+                    </li>
+                    <li class="loginUL" ng-show="user.isLoggedIn">
+                    	<a href="/Logout">Logout</a>
                     </li>
 					<li class="pull-right knowUs">
 						Know Us<b class="caret"></b>
@@ -69,6 +73,10 @@
 		</div>
 		<script src="services/app.js"></script>
 		<script src="controllers/ProductDisplayController.js"></script>
+		<script src="controllers/productDisplayService.js"></script>
+		<script src="controllers/addToCartFactory.js"></script>
+		<script src="controllers/cartController.js"></script>
+		<script src="controllers/userController.js"></script>
+		<script src="controllers/userService.js"></script>
 	</body>
-
 </html>

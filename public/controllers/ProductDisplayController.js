@@ -8,7 +8,7 @@ app.controller("CategoryDisplayController", ["$scope", "$http", "ProductDisplayS
         var categoryNode = {};
         for (var i=0; i<res.products.length; i++) {
             tempVal = res.products[i];
-            console.log("Retrieved categories are : " + JSON.stringify(tempVal));
+            //console.log("Retrieved categories are : " + JSON.stringify(tempVal));
             categoryNode = tempVal.item.categoryNode.split('_');
             temp = tempVal.item.categoryPath.split('/');
             if (!websense_block.indexOf(temp[1]) > -1) {
@@ -86,8 +86,10 @@ app.controller("ItemController", ["$scope", "$http", "ProductDisplayService", "$
 
     $scope.all = function() {
         $scope.toFixed = Number.prototype.toFixed;
-        $scope.product = ProductDisplayService.getProductDetailsExtended();
+     
     }
+    
+    $scope.product = ProductDisplayService.getProductDetailsExtended();
 
     $scope.all();
 }]);
