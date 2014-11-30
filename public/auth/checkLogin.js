@@ -22,7 +22,11 @@
 	    if (url.parse(req.url).pathname.split("/")[1] == "addToCart") {
 	    	
 	    	res.json({message: 'Please login first'});
-	    } else res.redirect('/');
+	    } else if (url.parse(req.url).pathname.split("/")[1] == "likeProduct") {
+	    	
+	    	res.json({message: 'Please login first'});
+	    }
+	     else res.redirect('/');
 	    
 	}
 

@@ -64,8 +64,8 @@ var serveRoutes = function(app, passport) {
 	//so that the "new user" can try to login the next time when he tries to.
 	app.post('/createUser', passport.authenticate('local-signup', {
 
-		successRedirect: '/getUser', 
-		failureRedirect: '/getUser',
+		successRedirect: '/', 
+		failureRedirect: '/signup',
 		failureFlash: true
 	}));
 
@@ -114,7 +114,11 @@ var serveRoutes = function(app, passport) {
 		res.json({message: "Login successful"});
 	});
 
+	app.post('/likeProduct/:itemId', checkLogin.isLoggedIn, function (req, res, next) {
+		crud.like(req.params.itemId, req, res);
+	});
 
+	//app.get('/showCart', checkLogin.isLoggedIn, crud.showCart);
 
 }
 

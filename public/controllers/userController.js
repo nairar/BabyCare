@@ -12,7 +12,6 @@ app.controller("UserController", ["$scope", "$http", "UserService", "ProductDisp
     	var password = $('input[name="password"]').val();
     	UserService.login(email, password, $scope.all);
         $scope.product = ProductDisplayService.getProductDetailsExtended();
-        if (req.url == '/') window.history.go(1);
         if (req.url == '/getProductDetailsExtended') window.history.go(0);
         //window.history.go(-1);
 

@@ -57,6 +57,9 @@
                     <li class="loginUL" ng-show="user.isLoggedIn">
                     	<a href="/Logout">Logout</a>
                     </li>
+                    <li class="loginUL" ng-show="user.isLoggedIn">
+                    	<a href="/showCart">Cart</a>
+                    </li>
 					<li class="pull-right knowUs">
 						Know Us<b class="caret"></b>
 	                    <ul class="knowUsUL">
@@ -78,5 +81,6 @@
 		<script src="controllers/cartController.js"></script>
 		<script src="controllers/userController.js"></script>
 		<script src="controllers/userService.js"></script>
+		<script src="controllers/likeService.js"></script>
 	</body>
 </html>
