@@ -38,7 +38,11 @@ var selectByCategoryNode = function(category_id, req, res) {
 
 
 var addToCart = function (itemId, req, res) {
-	
+		
+		if (req.user == undefined) {
+			return res.end();
+		}
+
 		var newCart = new Cart();
 	
 		newCart.userId = req.user._id;
@@ -55,9 +59,10 @@ var addToCart = function (itemId, req, res) {
 					if (err) {
 						console.log("Error while adding to cart:\n " + err);
 					}
-					return res.end();
-					//res.json({message: "Added item " + itemId + " to cart"});
-				});		
+					
+					res.userInfo.alert = 'Added Item ' + newCart.itemId + ' successfully';
+					return res.json(res.userInfo);
+				});
 			}
 
 			if (cartProduct != null) {
@@ -65,12 +70,13 @@ var addToCart = function (itemId, req, res) {
 					if (err) console.log("Error during cart update: " + err);
 
 					if (cartProduct) {
-						console.log("Successfully updated cart for suser");
-					}
+						console.log("Successfully updated cart for user");
+						res.updatedCart = "Successfully updated cart for user";
 
-					return res.end();
+					}
+					res.userInfo.alert = 'Updated cart with item ' + newCart.itemId + ' successfully';
+					return res.json(res.userInfo);
 				});
-				return res.end();
 			}
 			
 	
@@ -82,6 +88,10 @@ var addToCart = function (itemId, req, res) {
 var like = function (itemId, req, res) {
 	
 		var newCart = new Cart();
+
+		if (req.user == undefined) {
+			return res.end();
+		}
 	
 		newCart.userId = req.user._id;
 		newCart.itemId = itemId;
@@ -97,7 +107,8 @@ var like = function (itemId, req, res) {
 					if (err) {
 						console.log("Error while liking:\n " + err);
 					}
-					return res.end();
+					res.userInfo.alert = 'You just helped this baby product become popular!';
+					return res.json(res.userInfo);
 					//res.json({message: "Added item " + itemId + " to cart"});
 				});		
 			}
@@ -110,16 +121,28 @@ var like = function (itemId, req, res) {
 						console.log("Successfully updated likes for the item");
 					}
 
-					return res.end();
+					res.userInfo.alert = 'You just helped this baby product become popular!';
+					return res.json(res.userInfo);
 				});
 			}
-			
-	
 		});
-		
+}
+
+var showCart = function (req, res) {
+
+	Cart.find({'userId': req.user._id}, function (err, items) {
+		if (items) {
+			// console.log(items);
+			res.userInfo.cart = items;
+			return res.json(res.userInfo.cart);
+		}
+		else
+			return res.end();
+	});
 }
 
 exports.getProducts = getProducts;
 exports.selectByCategoryNode = selectByCategoryNode;
 exports.addToCart = addToCart;
 exports.like = like;
+exports.showCart = showCart;

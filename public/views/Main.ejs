@@ -12,7 +12,7 @@
 	</head>
 	<body>
 		<div class="nav-div">
-			<navbar ng-controller="UserController">
+			<navbar ng-controller="UserController" ng-init="init()">
 				<ul>
 					<a href="#/" bubbletooltip="Go to HomePage"><li class="mascot">BabyCare</li></a>
 					<li>
@@ -22,8 +22,8 @@
 						</form>
                     <li>
                     <li class="loginUL">
-                    	{{user.email}}<b class="glyphicon glyphicon-user"></b>
-                    	<ul class="loginFormUL" ng-hide="user.isLoggedIn">
+                    	{{user}}<b class="glyphicon glyphicon-user"></b>
+                    	<ul class="loginFormUL" ng-hide="isLoggedIn">
 	                        <li>
 	                        	<form class="form-login form-style">
 		                        	<div class="loginForm">
@@ -46,19 +46,17 @@
                     </li>
                     <li>
                     	<div>
-                    		<% if (message.length > 0) { %>
-                    		       <div class="alert"><%= message %></div>
-                    		<% } %>
+                    		{{message}}
                     	</div>
                     </li>
-                    <li class="loginUL" ng-show="!user.isLoggedIn">
+                    <li class="loginUL" ng-hide="isLoggedIn">
                     	<a href="/signup">Sign Up</a>
                     </li>
-                    <li class="loginUL" ng-show="user.isLoggedIn">
-                    	<a href="/Logout">Logout</a>
+                    <li class="loginUL" ng-show="isLoggedIn">
+                    	<a ng-click="logout('/logout')">Logout</a>
                     </li>
-                    <li class="loginUL" ng-show="user.isLoggedIn">
-                    	<a href="/showCart">Cart</a>
+                    <li class="loginUL" ng-show="isLoggedIn">
+                    	<a ng-click="showCart('/showCart')">Cart</a>
                     </li>
 					<li class="pull-right knowUs">
 						Know Us<b class="caret"></b>
@@ -82,5 +80,6 @@
 		<script src="controllers/userController.js"></script>
 		<script src="controllers/userService.js"></script>
 		<script src="controllers/likeService.js"></script>
+		<script src="controllers/sessionService.js"></script>
 	</body>
 </html>

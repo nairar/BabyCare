@@ -16,13 +16,21 @@ app.config(['$routeProvider',
             templateUrl: 'views/productExpand.ejs',
             controller: 'ItemController'
         }).
-        when('/addToCart/:itemId', {
+        when('/user/addToCart/:itemId', {
             templateUrl: 'views/productExpand.ejs',
             controller: 'CartController'
         }).
-        when('/likeProduct/:itemId', {
+        when('/showCart', {
+            templateUrl: 'views/cart.ejs',
+            controller: 'UserController'
+        }).
+        when('/user/likeProduct/:itemId', {
             templateUrl: 'views/productExpand.ejs',
             controller: 'LikeController'
+        }).
+        when('/logout', {
+            templateUrl: 'views/listProductsCategories.ejs',
+            controller: 'CategoryDisplayController'
         });
   }
 ]);

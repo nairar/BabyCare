@@ -1,15 +1,18 @@
-angular.module('BabyCare').controller("CartController", ["$scope", "$http", "CartService", "LikeService", "ProductDisplayService", "$routeParams", "$location", function($scope, $http, CartService, LikeService, ProductDisplayService, $routeParams, $location) {
+angular.module('BabyCare').controller("CartController", ["$scope", "$http", "CartService", "SessionService", "LikeService", "ProductDisplayService", "$routeParams", "$location", function($scope, $http, CartService, SessionService, LikeService, ProductDisplayService, $routeParams, $location) {
 
     // Select by category 
     $scope.renderCart = function (res) {
-        
-        $scope.message = res.message;
-        $scope.cart = res.cart;
+        console.log(res);
+        $scope.message = res.alert;
     }
 
     var id = $routeParams.itemId;
     console.log("Item received by route params:" + id);
-    CartService.addToCart(id, $scope.renderCart); 
+    
+    if (!SessionService.getLogin()) {
+        SessionService.set('/user/addToCart/' + id, $scope.renderCart);
+    }
+    CartService.addToCart(id, $scope.renderCart);
 
     $scope.all = function () {
         $scope.toFixed = Number.prototype.toFixed;
@@ -21,19 +24,19 @@ angular.module('BabyCare').controller("CartController", ["$scope", "$http", "Car
 }]);
 
 
-angular.module('BabyCare').controller("LikeController", ["$scope", "$http", "CartService", "LikeService", "ProductDisplayService", "$routeParams", "$location", function($scope, $http, CartService, LikeService, ProductDisplayService, $routeParams, $location) {
+angular.module('BabyCare').controller("LikeController", ["$scope", "$http", "CartService", "SessionService", "LikeService", "ProductDisplayService", "$routeParams", "$location", function($scope, $http, CartService, SessionService, LikeService, ProductDisplayService, $routeParams, $location) {
 
-    // Select by category 
-    $scope.renderCart = function (res) {
-        
-        $scope.message = res.message;
-        $scope.cart = res.cart;
+    
+    $scope.renderCart = function (res) {    
+        $scope.message = res.alert;
     }
 
     var id = $routeParams.itemId;
-    console.log("Item received by route params:" + id);
-    LikeService.addLike(id, $scope.renderCart);
-
+    if (!SessionService.getLogin()) {
+        SessionService.set('/user/likeProduct/' + id, $scope.renderCart);    
+    }
+    LikeService.addLike(id, $scope.renderCart);    
+    
     $scope.all = function () {
         $scope.toFixed = Number.prototype.toFixed;
         $scope.product = ProductDisplayService.getProductDetailsExtended();

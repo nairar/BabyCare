@@ -1,11 +1,11 @@
 var crud = require('../public/services/crud.js');
 var checkLogin = require('../public/auth/checkLogin.js');
+
 //temp operation to populate db during initialization
 var pop = require('./populateDB.js');
 var url = require ('url');
 
 var serveRoutes = function(app, passport) {
-
 
 //Basic routes
 /*==========================================================*/
@@ -13,27 +13,24 @@ var serveRoutes = function(app, passport) {
 	//temp operation to populate database
 	app.get('/populate', pop.getAllData);
 
-	/* Route to the main index page */
 	app.get('/', function (req, res) {
-
-		res.render("Main.ejs", { message: req.flash('loginMessage') });				
+		res.render("Main.ejs");
 	});
 
+	/* Route to the main index page */
+	app.get('/main', function (req, res) {
+		console.log(res.userInfo);
+		var userInfo = res.userInfo;
+		res.json(userInfo);
+	});
+
+	app.get('/error', function(req, res) {
+		res.render("error.ejs", {message: req.flash('loginMessage')});
+	});
 
 	/* Get environment variables of current system */
 	app.get('/env', function (req, res) {
 		res.send(process.env);
-	});
-
-	app.get('/getUser', function (req, res) {
-		if (req.user) {
-			res.json ( {user : {
-				email : req.user.local.email,
-				isLoggedIn : true
-			}});
-		} else res.json ({user : 
-			{email : 'Login', isLoggedIn : false}
-		});
 	});
 
 
@@ -45,26 +42,12 @@ var serveRoutes = function(app, passport) {
 		res.render('signUp.ejs',{ message: req.flash('signupMessage') });
 	});
 
-	//Lead the user to the profile page
-	app.get('/profile', checkLogin.isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
-            user : req.user // get the user out of session and pass to template
-        });
-    });
-
-	//Log the user out
-	app.get('/logout', function(req, res) {
-        req.logout();
-        req.user = undefined;
-        res.redirect('/');
-    });
-
 	
 	//On sign-up form submission, send username and password to database for storage
 	//so that the "new user" can try to login the next time when he tries to.
 	app.post('/createUser', passport.authenticate('local-signup', {
 
-		successRedirect: '/', 
+		successRedirect: '/main', 
 		failureRedirect: '/signup',
 		failureFlash: true
 	}));
@@ -76,13 +59,20 @@ var serveRoutes = function(app, passport) {
 		res.render('Main.ejs', {message: req.flash('loginMessage')});
 	});
 
-	//Login if user is present - serve the profile page on login
-	app.post('/login',
-        passport.authenticate('local-login', {
-            successRedirect : '/getUser',
-            failureRedirect : '/getUser'
-    }));
-
+	app.post('/login', function(req, res, next) {
+	  passport.authenticate('local-login', function(err, user, info) {
+	    if (err) { return next(err); }
+	    if (!user) { return res.redirect('/error'); }
+	    if (user) {
+	    	req.logIn(user, function(err) {
+	    	      if (err) { return next(err); }
+	    		  res.userInfo = {alert: "Authenticated",
+	    		  				user: user.local.email,
+	    		  				isLoggedIn: true};
+	    		  return res.json(res.userInfo);      
+	    	});
+	    }})(req, res, next);
+	});
 
 	//Facebook login serve request - GET
 	app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
@@ -90,9 +80,18 @@ var serveRoutes = function(app, passport) {
     // handle the callback after facebook has authenticated the user
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect : '/getUser',
-            failureRedirect : '/getUser'
+            successRedirect : '/main',
+            failureRedirect : '/main'
         }));
+
+
+	//Log the user out
+	app.get('/logout', function(req, res, next) {
+        req.logout();
+        console.log("Redirecting to main after logout");
+        res.end();
+    });
+
 
 /*================================================Get baby products=================================================*/
 
@@ -106,24 +105,19 @@ var serveRoutes = function(app, passport) {
 
 /*================================================User cart operations==============================================*/
 
-	app.post('/addToCart/:itemId', checkLogin.isLoggedIn, function (req, res, next) {
-		crud.addToCart(req.params.itemId, req, res);
+	app.post('/user/addToCart/:itemId', function (req, res, next) {
+		crud.addToCart(req.params.itemId, req, res, next);
 	});
 
-	app.get('/addToCart', checkLogin.isLoggedIn, function (req, res, next) {
-		res.json({message: "Login successful"});
+	app.post('/user/likeProduct/:itemId', function (req, res, next) {
+		crud.like(req.params.itemId, req, res, next);
 	});
 
-	app.post('/likeProduct/:itemId', checkLogin.isLoggedIn, function (req, res, next) {
-		crud.like(req.params.itemId, req, res);
+	app.get('/showCart', function (req, res, next) {
+		crud.showCart(req, res, next);
 	});
-
-	//app.get('/showCart', checkLogin.isLoggedIn, crud.showCart);
 
 }
-
-
-
 
 
 exports.serveRoutes = serveRoutes;

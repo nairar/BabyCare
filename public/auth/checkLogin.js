@@ -2,37 +2,34 @@
 	//First check whether user is already created in db and then log him in.
 	// If session has timed out or user has not authenticated properly or user not present,
 	//redirect to home page
+	var prev = '';
 	function isLoggedIn(req, res, next) {
+		res.userInfo = {alert: "",
+						user: "Login",
+						isLoggedIn: false,
+						url : url.parse(req.url).pathname,
+						cart : []};
+		prev = '';
 
+		console.log("Check Login: previous url: " + url.parse(req.url).pathname);
+		//console.log(req.session.prev);
 	    // if user is authenticated in the session, carry on 
-	    if (req.isAuthenticated()) {
-
-	    	
-	    	res.message = "User Authenticated";
-	    	res.end();
-	    	next();
-	    }
-
-	    // if they aren't redirect them to the home page
-	    console.log(url.parse(req.url).pathname.split("/")[1]);
-	    
-	    // set current path when trying to check whether user is logged in, so that
-	    // when he finally logs in he can be redirected back to the same page if needed
-	    req.session.currentPath = req.path;
-	    if (url.parse(req.url).pathname.split("/")[1] == "addToCart") {
-	    	
-	    	res.json({message: 'Please login first'});
-	    } else if (url.parse(req.url).pathname.split("/")[1] == "likeProduct") {
-	    	
-	    	res.json({message: 'Please login first'});
-	    }
-	     else res.redirect('/');
-	    
-	}
-
-	function getUser (req, res, next) {
-		res.redirect('/getUser', next);
+	    console.log(req.user);
+	    if (req.user) {
+	    	prev = url.parse(req.url).pathname;
+	    	console.log("User authentication successful");
+	    	res.userInfo.alert = "User Authenticated";
+	    	res.userInfo.user = req.user.local.email;
+	    	res.userInfo.isLoggedIn = true;	
+	    } else {
+	    	prev = url.parse(req.url).pathname;
+	    	console.log("User authentication failed");
+	    	res.userInfo.alert = 'Please Login First';
+	    	res.userInfo.user = "Login";
+	    	res.userInfo.isLoggedIn = false;
+	    	res.json (res.userInfo);
+	    }	    
 	}
 
 	exports.isLoggedIn = isLoggedIn;
-	exports.getUser = getUser;
+	exports.prev = prev;

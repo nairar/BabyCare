@@ -369,6 +369,15 @@ input[type="radio"] {
 	border: 3px solid red;
 	color: red;
 	background-color: black;
-	width: 150px;
+	width: 250px;
 	font-size: 20px;
+}
+
+.cartEmptyMessage {
+	border: 3px solid red;
+	color: red;
+	background-color: black;
+	width: 350px;
+	height: 50px;
+	font-size: 20px;	
 }

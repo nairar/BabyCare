@@ -4,15 +4,17 @@ angular.module('BabyCare').factory("CartService", function ($http) {
 	var addToCart = function(itemId, callback) {
 		if (itemId != undefined) {
 			console.log("CartFactory : Item being added to cart is - " + JSON.stringify(itemId));
-			$http.post('/addToCart/'+ itemId).success(callback);
+			$http.post('/user/addToCart/'+ itemId).success(callback);
 		}
 	}
 
+	var showCart = function (callback) {
+		console.log("Adding to cart..");
+		$http.get('/showCart').success(callback);
+	}
+
 	return {
-		/*"create" : create 
-		"selectOne": selectOne,*/
-		"addToCart": addToCart
-		/*"remove": remove,
-		"update": update*/
+		"addToCart": addToCart,
+		"showCart" : showCart
 	}
 });

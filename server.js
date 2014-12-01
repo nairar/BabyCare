@@ -9,6 +9,7 @@ var routes = require('./routes/routeToService.js');
 
 var mongodb = require('./public/services/db.js');
 var configurePassport = require('./public/auth/passport.js');
+var checkLogin = require('./public/auth/checkLogin.js');
 
 //Initialize express App
 var app = express();
@@ -51,7 +52,9 @@ configurePassport(passport);
 app.use(passport.initialize());
 //Persist login sessions
 app.use(passport.session());
-//Setup connect flash for use
+
+
+
 
 //Set up template engine
 app.set('view engine', 'ejs'); // set up ejs for templating
@@ -60,8 +63,25 @@ console.log(__dirname);
 app.use('/', express.static(__dirname + '/public'));
 app.set('views', __dirname + '/public/views');
 
-
+//Setup connect flash for use
 app.use(flash());
+
+
+app.use('/showCart', function (req, res, next) {
+	checkLogin.isLoggedIn(req, res, next);
+	next();
+});
+
+app.use('/user', function (req, res, next) {
+	checkLogin.isLoggedIn(req, res, next);
+	next();
+});
+
+app.use('/main', function (req, res, next) {
+	console.log("Received middleware functionality");
+	checkLogin.isLoggedIn(req, res, next);
+	
+});
 
 routes.serveRoutes(app, passport);
 
