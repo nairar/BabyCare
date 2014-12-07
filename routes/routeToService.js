@@ -14,6 +14,8 @@ var serveRoutes = function(app, passport) {
 	app.get('/populate', pop.getAllData);
 
 	app.get('/', function (req, res) {
+		console.log(res.userInfo);
+		var userInfo = res.userInfo;
 		res.render("Main.ejs");
 	});
 
