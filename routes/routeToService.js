@@ -122,6 +122,11 @@ var serveRoutes = function(app, passport) {
 		crud.showCart(req, res, next);
 	});
 
+	app.post('/user/checkOut', function (req, res, next) {
+		console.log("Buying stuff..");
+		crud.buy(req, res, next);
+	});
+
 }
 
 function ensureAuthenticated(req, res, next) {

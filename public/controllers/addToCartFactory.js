@@ -20,8 +20,14 @@ angular.module('BabyCare').factory("CartService", function ($http) {
 		return userCart;
 	}
 
+	var checkOut = function (callback) {
+		console.log("CartService: Purchasing items");
+		$http.post('/user/checkOut').success(callback);
+	}
+
 	return {
 		"addToCart": addToCart,
-		"showCart" : showCart
+		"showCart" : showCart,
+		"checkOut" : checkOut
 	}
 });

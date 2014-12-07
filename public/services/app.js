@@ -35,6 +35,10 @@ app.config(['$routeProvider',
         when('/logout', {
             templateUrl: 'views/listProductsCategories.ejs',
             controller: 'CategoryDisplayController'
+        }).
+        when('/user/checkOut', {
+            templateUrl: 'views/cart.ejs',
+            controller: 'CartController'
         });
   }
 ]);

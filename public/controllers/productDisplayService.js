@@ -16,6 +16,14 @@ angular.module('BabyCare').factory("ProductDisplayService", function ($http) {
 		$http.get('/getProductsByCategory/'+ categoryNode).success(callback);
 	}
 
+
+	var expandCartProduct = function (cartItem, callback) {
+		$http.get('/getItem/'+cartItem.itemId).success(function (res) {
+			currentlyDisplayedProduct = res;
+			callback();
+			console.log("Currently saved product: " + JSON.stringify(currentlyDisplayedProduct.itemId));
+		});
+	}
 	/*var remove = function (id, callback) {
 		$http.delete('/employees/'+id).success(callback);
 	}	
@@ -46,7 +54,8 @@ angular.module('BabyCare').factory("ProductDisplayService", function ($http) {
 		"selectAll": selectAll,
 		"selectByCategoryNode": selectByCategoryNode,
 		"saveProductDetailsExtended": saveProductDetailsExtended,
-		"getProductDetailsExtended": getProductDetailsExtended
+		"getProductDetailsExtended": getProductDetailsExtended,
+		"expandCartProduct" : expandCartProduct
 		/*"remove": remove,
 		"update": update*/
 

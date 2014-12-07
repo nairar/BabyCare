@@ -86,7 +86,7 @@ app.controller("ItemController", ["$scope", "$http", "ProductDisplayService", "$
 
     $scope.all = function() {
         $scope.toFixed = Number.prototype.toFixed;
-     
+        $scope.reviews= [{'review': "Hello there!"}, {'review' : "Hey!"}];
     }
     
     $scope.product = ProductDisplayService.getProductDetailsExtended();

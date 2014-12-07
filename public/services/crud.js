@@ -49,6 +49,7 @@ var addToCart = function (itemId, req, res) {
 		newCart.itemId = itemId;
 		newCart.later = true;
 		Cart.findOne({$and:[{'itemId': itemId}, {'userId' : req.user._id}]}, function(err, cartProduct) {
+			
 			if (err) console.log (err);
 			console.log(cartProduct);
 
@@ -65,7 +66,13 @@ var addToCart = function (itemId, req, res) {
 				});
 			}
 
+
+
 			if (cartProduct != null) {
+				if (cartProduct.purchased == true) {
+					res.userInfo.alert = 'You have already purchased this item';
+					return res.json(res.userInfo);
+				}
 				Cart.update({$and:[{'itemId': itemId}, {'userId' : req.user._id}]}, {$set: {'later': newCart.later}}, function (err, cartProduct) {
 					if (err) console.log("Error during cart update: " + err);
 
@@ -114,11 +121,17 @@ var like = function (itemId, req, res) {
 			}
 
 			if (cartProduct != null) {
+				if (cartProduct.liked == true) {
+							console.log("You already like this item");	
+							res.userInfo.alert = 'You already like this item';
+							return res.json(res.userInfo);
+				}
+
 				Cart.update({$and:[{'itemId': itemId}, {'userId' : req.user._id}]}, {$set: {'liked': newCart.liked}}, function (err, cartProduct) {
 					if (err) console.log("Error during like update: " + err);
 
 					if (cartProduct) {
-						console.log("Successfully updated likes for the item");
+						console.log("Successfully updated likes for the item");	
 					}
 
 					res.userInfo.alert = 'You just helped this baby product become popular!';
@@ -130,15 +143,36 @@ var like = function (itemId, req, res) {
 
 var showCart = function (req, res) {
 
-	Cart.find({'userId': req.user._id}, function (err, items) {
+	Cart.find({$and: [{'userId': req.user._id}, {'later': true}]}, function (err, items) {
 		if (items) {
 			// console.log(items);
 			res.userInfo.cart = items;
 			return res.json(res.userInfo.cart);
 		}
-		else
-			return res.end();
+		else{
+			res.userInfo.alert = 'Cart empty';
+			return res.json();
+		}
+
+			
 	});
+}
+
+var buy = function (req, res) {
+	Cart.find({'userId': req.user._id}, function (err, items) {
+		if (items) {
+			Cart.update({'userId' : req.user._id}, {$set: {purchased: true, later: false}}, {multi: true} , function (err, cartProduct) {
+				if (err) console.log("Error during cart purchase: " + err);
+
+				if (cartProduct) {
+					console.log("Purchase successful!");
+				}
+
+				res.userInfo.alert = 'You just purchased the items..they will be delivered shortly to your home!';
+				return res.json(res.userInfo);
+			});
+		}
+	})
 }
 
 exports.getProducts = getProducts;
@@ -146,3 +180,4 @@ exports.selectByCategoryNode = selectByCategoryNode;
 exports.addToCart = addToCart;
 exports.like = like;
 exports.showCart = showCart;
+exports.buy = buy;

@@ -33,6 +33,21 @@ angular.module('BabyCare').controller("CartController", ["$scope", "$http", "Car
         CartService.showCart($scope.renderCart);
     }
 
+    $scope.expandProduct = function (cartItem, view) {
+        console.log("Showing product");
+        ProductDisplayService.expandCartProduct(cartItem, function(req, res) {
+            $location.path(view);
+        });
+    }
+
+
+    $scope.buy = function (view) {
+        console.log("CartController: Checkout cart..");
+        CartService.checkOut(function (req, res) {
+           $location.path(view); 
+       });
+    }
+
     $scope.showCart();
     $scope.all();
 
