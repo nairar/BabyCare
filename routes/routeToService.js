@@ -13,16 +13,15 @@ var serveRoutes = function(app, passport) {
 	//temp operation to populate database
 	app.get('/populate', pop.getAllData);
 
+
 	app.get('/', function (req, res) {
-		console.log(res.userInfo);
-		var userInfo = res.userInfo;
-		res.render("Main.ejs", userInfo);
+		console.log("Logging to / : " + res.userInfo);
+		res.render('Main.ejs', res.userInfo);
 	});
 
-	app.get('/fb',  function (req, res) {
-		console.log(res.userInfo);
+	app.get('/fb', ensureAuthenticated, function (req, res) {
 		var userInfo = res.userInfo;
-		res.json(userInfo);
+		res.render("Main.ejs", userInfo);
 	});
 
 	/* Route to the main index page */
@@ -86,9 +85,11 @@ var serveRoutes = function(app, passport) {
 	app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
     // handle the callback after facebook has authenticated the user
-    app.get('/auth/facebook/callback', 
-      passport.authenticate('facebook', { successRedirect: '/',
-                                          failureRedirect: '/main' }));
+    app.get('/auth/facebook/callback',
+	    passport.authenticate('facebook', { failureRedirect: '/main' }),
+	    function(req, res) {
+	     res.redirect('/fb');
+    });
 	//Log the user out
 	app.get('/logout', function(req, res, next) {
         req.logout();
@@ -121,6 +122,11 @@ var serveRoutes = function(app, passport) {
 		crud.showCart(req, res, next);
 	});
 
+}
+
+function ensureAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) { return next(); }
+	res.redirect('/');
 }
 
 
