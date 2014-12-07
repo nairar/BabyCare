@@ -1,11 +1,13 @@
-<div class="container exactCenter">
-	<ul ng-repeat="item in items track by $index">
-		<li>{{item.itemId}} + " " + {{item.name}}</li>
-	</ul>
+<div ng-hide="hideCart" class="container">
 	<div>
-		<a href="#/user/checkOut"><button class="btn btn-small" type="submit" class="btn btn-primary btn-signup pad" value="Checkout"></a>
+		<ul ng-repeat="cartItem in cartItems">
+			<li>{{cartItem.itemId}}</li>
+		</ul>
+	</div>
+	<div>
+		<a href="#/user/checkOut" class="btn btn-success btn-signup pad">Checkout</a>
 	</div>
 </div>
-<div class="cartEmptyMessage">
-	{{message}}
+<div ng-show="hideCart" class="cartEmptyMessage">
+	{{cartAlert}}
 </div>

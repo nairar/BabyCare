@@ -4,6 +4,7 @@ app.controller("UserController", ["$scope", "$http", "UserService", "SessionServ
                     user: "Login",
                     isLoggedIn: false};
 
+
     $scope.init = function () {
         $scope.user = $scope.userInfo.user;
         $scope.isLoggedIn = $scope.userInfo.isLoggedIn;
@@ -35,32 +36,14 @@ app.controller("UserController", ["$scope", "$http", "UserService", "SessionServ
         }
     }
 
-    $scope.renderCart = function (res) {
-        console.log(res);
-        if (res){
-            $scope.items = res;
-            $scope.viewHidden = false;
-        }
-        else {
-            $scope.message = 'No items yet added by you yet..';
-            $scope.viewHidden = true;
-        }
-    }
 
     $scope.go = function (req, res) {
     	var email = $('input[name="email"]').val();
     	var password = $('input[name="password"]').val();
     	UserService.login(email, password, $scope.all);
-
     }
 
-    $scope.showCart = function (view) {
-        CartService.showCart(function(req, res) {
-            $location.path(view);
-            $scope.renderCart(res);
-        });
-    }
-
+    
     $scope.logout = function (view) {
         UserService.logout('/logout', function (req, res) {
             $scope.user = "Login";

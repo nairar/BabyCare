@@ -47,7 +47,7 @@ var serveRoutes = function(app, passport) {
 	//so that the "new user" can try to login the next time when he tries to.
 	app.post('/createUser', passport.authenticate('local-signup', {
 
-		successRedirect: '/main', 
+		successRedirect: '/', 
 		failureRedirect: '/signup',
 		failureFlash: true
 	}));

@@ -1,6 +1,10 @@
 var app = angular.module('BabyCare',['ngRoute']);
 
 
+app.service('Cart', function() {
+    return {};
+});
+
 app.config(['$routeProvider',
   function ($routeProvider) {
       $routeProvider.
@@ -22,7 +26,7 @@ app.config(['$routeProvider',
         }).
         when('/showCart', {
             templateUrl: 'views/cart.ejs',
-            controller: 'UserController'
+            controller: 'CartController'
         }).
         when('/user/likeProduct/:itemId', {
             templateUrl: 'views/productExpand.ejs',

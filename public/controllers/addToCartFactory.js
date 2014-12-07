@@ -1,5 +1,5 @@
 angular.module('BabyCare').factory("CartService", function ($http) {
-	var userCart = undefined;
+	var userCart = {};
 
 	var addToCart = function(itemId, callback) {
 		if (itemId != undefined) {
@@ -9,8 +9,15 @@ angular.module('BabyCare').factory("CartService", function ($http) {
 	}
 
 	var showCart = function (callback) {
-		console.log("Adding to cart..");
-		$http.get('/showCart').success(callback);
+		$http.get('showCart').success(function (res) {
+			userCart = res;
+			callback(res);
+		});
+	}
+
+	var getCartItems = function () {
+		console.log("Adding items to cartHolder..");
+		return userCart;
 	}
 
 	return {
