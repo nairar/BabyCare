@@ -14,7 +14,9 @@ var serveRoutes = function(app, passport) {
 	app.get('/populate', pop.getAllData);
 
 	app.get('/', function (req, res) {
-		res.render("Main.ejs");
+		console.log(res.userInfo);
+		var userInfo = res.userInfo;
+		res.render("Main.ejs", userInfo);
 	});
 
 	app.get('/fb',  function (req, res) {
@@ -85,7 +87,7 @@ var serveRoutes = function(app, passport) {
 
     // handle the callback after facebook has authenticated the user
     app.get('/auth/facebook/callback', 
-      passport.authenticate('facebook', { successRedirect: '/fb',
+      passport.authenticate('facebook', { successRedirect: '/',
                                           failureRedirect: '/main' }));
 	//Log the user out
 	app.get('/logout', function(req, res, next) {
