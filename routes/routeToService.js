@@ -88,7 +88,7 @@ var serveRoutes = function(app, passport) {
     app.get('/auth/facebook/callback',
 	    passport.authenticate('facebook', { failureRedirect: '/main' }),
 	    function(req, res) {
-	     res.redirect('/fb');
+	     res.redirect('/main');
     });
 	//Log the user out
 	app.get('/logout', function(req, res, next) {
