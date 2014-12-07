@@ -14,9 +14,13 @@ var serveRoutes = function(app, passport) {
 	app.get('/populate', pop.getAllData);
 
 	app.get('/', function (req, res) {
+		res.render("Main.ejs");
+	});
+
+	app.get('/fb',  function (req, res) {
 		console.log(res.userInfo);
 		var userInfo = res.userInfo;
-		res.render("Main.ejs");
+		res.json(userInfo);
 	});
 
 	/* Route to the main index page */
@@ -80,14 +84,9 @@ var serveRoutes = function(app, passport) {
 	app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
 
     // handle the callback after facebook has authenticated the user
-    app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', { failureRedirect: '/' }),
-			function(req, res) {
-				console.log("Redirecting....");
-			res.redirect('/');
- 		});
-
-
+    app.get('/auth/facebook/callback', 
+      passport.authenticate('facebook', { successRedirect: '/fb',
+                                          failureRedirect: '/main' }));
 	//Log the user out
 	app.get('/logout', function(req, res, next) {
         req.logout();
