@@ -79,10 +79,11 @@ var serveRoutes = function(app, passport) {
 
     // handle the callback after facebook has authenticated the user
     app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect : '/main',
-            failureRedirect : '/main'
-        }));
+        passport.authenticate('facebook', { failureRedirect: '/' }),
+			function(req, res) {
+				console.log("Redirecting....");
+			res.redirect('/');
+ 		});
 
 
 	//Log the user out
