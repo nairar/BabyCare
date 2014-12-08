@@ -8,7 +8,9 @@
 						user: "Login",
 						isLoggedIn: false,
 						url : url.parse(req.url).pathname,
-						cart : []};
+						cart : [],
+						cartLiked: [],
+						cartPurchased: []};
 		prev = '';
 
 		console.log("Check Login: previous url: " + url.parse(req.url).pathname);

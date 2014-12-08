@@ -39,6 +39,10 @@ app.config(['$routeProvider',
         when('/user/checkOut', {
             templateUrl: 'views/cart.ejs',
             controller: 'CartController'
+        }).
+        when('/user/profile', {
+            templateUrl: 'views/profile.ejs',
+            controller: 'ProfileController'
         });
   }
 ]);

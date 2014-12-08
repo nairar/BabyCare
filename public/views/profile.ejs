@@ -11,30 +11,31 @@
 	</head>
 	<body>
 		<div class="container">
-	        <nav>
-	            <ul>
-	                <li class="mascot">BabyCare</li>
-	                <li>
-	                    Home<b class="caret"></b>
-	                    <ul>
-	                        <li>About</li>
-	                        <li>BabyCare Help</li>
-	                        <li>Contact Us</li>
-	                    </ul>
-	                </li>
-	                <li>
-	                    Services<b class="caret"></b>
-	                    <ul>
-	                        <li>Sell</li>
-	                        <li>Buy</li>
-	                        <li>Create and save</li>
-	                    </ul>
-	                </li>
-	            </ul>
-	            <ul class="pull-right">
-	            	<a href="/logout" class="rounded logout"><img src="../images/logout.png" />Logout</button>
-	            </ul>
-	        </nav>
+		    
+			<div class="productLiked">
+				<h2> Liked Products </h2>
+		        <ul ng-repeat="likedItem in likedItems">
+		        	<li>
+		        		<div>
+		        			<img src="{{likedItem.item.thumbnailImage}}" />
+		        			<div>{{likedItem.item.name}}</div>
+		        		</div>
+		        	</li>
+		        </ul>
+	        </div>
+	        <hr />
+	        
+	        <div class="productPurchased">
+		    	<h2> Purchased items </h2>    
+				<ul ng-repeat="purchasedItem in purchasedItems">
+		        	<li>
+		        		<div>
+		        			<img src="{{purchasedItem.item.thumbnailImage}}" />
+		        			<div>{{purchasedItem.item.name}}</div>
+		        		</div>
+		        	</li>
+		        </ul>
+	        </div>
 		</div>
 	</body>
 </html>

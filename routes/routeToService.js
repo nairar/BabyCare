@@ -131,6 +131,13 @@ var serveRoutes = function(app, passport) {
 		crud.buy(req, res, next);
 	});
 
+	app.get('/user/profile', function (req, res, next) {
+		console.log("Getting liked items..");
+		crud.getProfileData(req, res, next);
+	});
+
+	
+
 }
 
 function ensureAuthenticated(req, res, next) {

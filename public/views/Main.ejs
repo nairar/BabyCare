@@ -56,6 +56,9 @@
                     	<a ng-click="logout('/logout')">Logout</a>
                     </li>
                     <li class="loginUL" ng-show="isLoggedIn">
+                    	<a href='#/user/profile'>Profile</a>
+                    </li>
+                    <li class="loginUL" ng-show="isLoggedIn">
                     	<a href='#/showCart'>Cart</a>
                     </li>
 					<li class="pull-right knowUs">
@@ -81,5 +84,7 @@
 		<script src="controllers/userService.js"></script>
 		<script src="controllers/likeService.js"></script>
 		<script src="controllers/sessionService.js"></script>
+		<script src="controllers/ProfileController.js"></script>
+		<script src="controllers/ProfileService.js"></script>
 	</body>
 </html>

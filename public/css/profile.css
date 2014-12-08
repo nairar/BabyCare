@@ -1,88 +1,104 @@
-
-/*----------------------------------------Navigation design-----------------------------------------------*/
-
-nav {
-    position: relative;
-    margin-top: 20px;
-    margin-left: -50px;
-    cursor: pointer;
-}
-
-    nav ul {
-        background: radial-gradient(#5e5454, #9b9797);
+@media (min-width: 768px) {
+    .productLiked {
         position: relative;
-        display: inline-block;
-        border-radius: 10px;
-        list-style: none;
-        color: white;
         margin-top: 10px;
-        margin-left: 10px;
-        margin-bottom: 0px;
-        padding: 0 10px 0 10px;
-        box-shadow: 0 0 10px #393434;
+        margin-bottom: 20px;
+        float: left;
     }
 
-        nav ul li {
-            float: left;
-            padding: 10px;
-        }
+    .productPurchased {
+        position: relative;
+        margin-top: 50px;
+        float: left;
+    }
 
-            nav ul li:hover {
-                background: #635a5a;
-            }
-
-    .logout {
+    .productLiked ul {
+        margin-top: 20px;
+        width: 250px;
+        height: 150px;
+        float:left;
+        background: rgba(0, 0, 0, 0.6);
+        border-color: black;
         color: white;
-        text-decoration: none;
+        margin-right: 4px;
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+        /* For IE 8*/
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
     }
 
-        /*------------------------------------Sub-menu design--------------------------------------*/
+    .productLiked ul:hover > li {
+        color: black;
+    }
 
-        nav ul ul {
-            display: none;
-        }
+    .productPurchased ul {
+        margin-top: 20px;
+        width: 250px;
+        height: 150px;
+        float:left;
+        border-color: black;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        margin-right: 4px;
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+        /* For IE 8*/
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+    }
 
-        nav ul li:hover > ul {
-            float: none;
-            position: absolute;
-            top: 100%;
-            display: block;
-            border-radius: 0px;
-            padding: 0;
-            margin-top: 0px;
-            margin-left: 0px;
-            margin-bottom: 0px;
-        }
-
-        nav ul ul li {
-            float: none;
-        }
-
-
-
-/*----------------------------------------<Mascot Design>-------------------------------------------------*/
-
-@media (max-width:331px){
-    .mascot{
-        width : 100%;
+    .productPurchased ul:hover > li {
+        color: black;
     }
 }
 
-.mascot {
-    font-weight: bold;
-    font-family: Cambria;
-    font-size: x-large;
-    text-shadow: 0 0 3px;
-    padding-bottom: 0;
-    padding-top: 0;
-    margin-bottom: 0;
-    border-bottom: 0;
-    color: #f3921b;
-}
 
-    .mascot:hover {
-        color: #00ff21;
-        background: none;
+
+
+@media (max-width: 768px) {
+    .productLiked {
+        position: relative;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        float: left;
     }
 
+    .productPurchased {
+        position: relative;
+        margin-top: 50px;
+        float: left;
+    }
 
+    .productLiked ul {
+        margin-top: 20px;
+        width: 200px;
+        height: 200px;
+        float:none;
+        background: rgba(0, 0, 0, 0.6);
+        border-color: black;
+        color: white;
+        margin-right: 4px;
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+        /* For IE 8*/
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+    }
+
+    .productLiked ul:hover > li {
+        color: black;
+    }
+
+    .productPurchased ul {
+        margin-top: 20px;
+        width: 200px;
+        height: 200px;
+        float:none;
+        border-color: black;
+        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        margin-right: 4px;
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+        /* For IE 8*/
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+    }
+
+    .productPurchased ul:hover > li {
+        color: black;
+    }
+}

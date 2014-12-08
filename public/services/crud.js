@@ -49,7 +49,7 @@ var addToCart = function (itemId, req, res) {
 		newCart.itemId = itemId;
 		newCart.later = true;
 		Cart.findOne({$and:[{'itemId': itemId}, {'userId' : req.user._id}]}, function(err, cartProduct) {
-			
+
 			if (err) console.log (err);
 			console.log(cartProduct);
 
@@ -175,9 +175,59 @@ var buy = function (req, res) {
 	})
 }
 
+
+var getProfileData = function (req, res, next) {
+	Cart.find({$and: [{'userId' : req.user._id}]}, function(err, items) {
+			console.log("Mongo: Products for given category were found to be : " + items);
+			
+			//console.log("Mongo: Products in a category:" + products);
+
+			if (items.length != 0) {
+				var itemLiked = [];
+				var itemPurchased = [];
+				for (var i=0; i<items.length; i++) {
+					if (items[i].liked == true) {
+						itemLiked.push(items[i].itemId);	
+					} else if (items[i].purchased == true) {
+						itemPurchased.push(items[i].itemId);
+					}
+
+					
+				}
+				console.log("Mongo: Retrieved liked profile items: " + itemLiked);
+				Product.find({'item.itemId' : {$in : itemLiked}}, function (err, docs) {
+					if (docs.length != 0) {
+						console.log("Mongo: Retrieved liked items by ID for profile");
+						res.userInfo.cartLiked = docs;
+						//console.log(res.userInfo.cartLiked);
+					} else {
+						res.userInfo.alert = "Error showing liked items.";
+
+					}
+					Product.find({'item.itemId': {$in : itemPurchased}}, function (err, docs) {
+							if (docs.length != 0) {
+								console.log ("Mongo: Retrieved purchased items by ID for profile");
+								res.userInfo.cartPurchased = docs;
+								res.json(res.userInfo);
+							} else {
+								res.userInfo.alert = "Error showing purchased items.";
+								res.json(res.userInfo);
+							}
+					});
+				});
+			} else {
+						res.userInfo.alert = 'No items found';
+						return res.json(res.userInfo);
+			}
+	
+		});
+}
+
+
 exports.getProducts = getProducts;
 exports.selectByCategoryNode = selectByCategoryNode;
 exports.addToCart = addToCart;
 exports.like = like;
 exports.showCart = showCart;
 exports.buy = buy;
+exports.getProfileData = getProfileData;
