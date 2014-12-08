@@ -21,17 +21,7 @@ body {
 		list-style-type: none;
 	}
 
-	.contact {
-		font:normal 18px Arial, Helvetica, sans-serif;  
-		margin:150px auto; width: 450px;  height: 300px;  
-		float: center;
-        background-color:black ; 
-        opacity: 0.7;
-        border-radius: 30px;
-        border: 2px solid  darkgray;
-        box-shadow: 0 0 10px black;
-        color: #fff;
-    }
+	
 
 	h2{
 		text-align: center;
@@ -53,6 +43,18 @@ body {
 	box-shadow: 0 0 10px orange;
 	margin-left: 10px;
 }
+
+.contact {
+		font:normal 18px Arial, Helvetica, sans-serif;  
+		margin:150px auto; width: 450px;  height: 300px;  
+		float: center;
+        background-color:black ; 
+        opacity: 0.7;
+        border-radius: 30px;
+        border: 2px solid  darkgray;
+        box-shadow: 0 0 10px black;
+        color: #fff;
+    }
 }
 
 @media (max-width: 768px) {
@@ -62,6 +64,20 @@ body {
 	box-shadow: 0 0 10px orange;
 	margin-left: 10px;
 }
+
+.contact {
+		font:normal 12px Arial, Helvetica, sans-serif;  
+		margin:0 auto; width: 220px;  height: 300px;  
+		margin-top: 30px;
+		float: center;
+		text-align: left;
+        background-color:black ; 
+        opacity: 0.7;
+        border-radius: 30px;
+        border: 2px solid  darkgray;
+        box-shadow: 0 0 10px black;
+        color: #fff;
+    }
 }
 
 .nav-div {
