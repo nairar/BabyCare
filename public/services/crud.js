@@ -202,7 +202,6 @@ var getProfileData = function (req, res, next) {
 						
 					} else {
 						res.userInfo.alert = "Error showing liked items.";
-						return res.end();
 					}
 					Product.find({'item.itemId': {$in : itemPurchased}}, function (err, docs) {
 							if (docs.length != 0) {
