@@ -232,6 +232,15 @@ var search = function (reg, req, res) {
 		return res.json(docs);
 	});
 }
+/*
+var search = function(query, req, res) {
+db.command({ text: 'collectionName', search: query }, function(e, o) {
+    if (e) {
+        console.log(e, 'error')
+    }
+    else callback(o)
+});
+}*/
 
 exports.getProducts = getProducts;
 exports.selectByCategoryNode = selectByCategoryNode;
