@@ -186,7 +186,7 @@ var getProfileData = function (req, res, next) {
 				var itemLiked = [];
 				var itemPurchased = [];
 				for (var i=0; i<items.length; i++) {
-					if (items[i].liked == true) {
+					if (items[i].liked == true && items[i].liked == false) {
 						itemLiked.push(items[i].itemId);	
 					} else if (items[i].purchased == true) {
 						itemPurchased.push(items[i].itemId);
