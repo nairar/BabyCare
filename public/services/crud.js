@@ -186,13 +186,12 @@ var getProfileData = function (req, res, next) {
 				var itemLiked = [];
 				var itemPurchased = [];
 				for (var i=0; i<items.length; i++) {
-					if (items[i].liked == true && items[i].purchased == false) {
+					if (items[i].liked == true) {
 						itemLiked.push(items[i].itemId);	
-					} else if (items[i].purchased == true) {
+					}
+					if (items[i].purchased == true) {
 						itemPurchased.push(items[i].itemId);
 					}
-
-					
 				}
 				console.log("Mongo: Retrieved liked profile items: " + itemLiked);
 				Product.find({'item.itemId' : {$in : itemLiked}}, function (err, docs) {
@@ -200,18 +199,19 @@ var getProfileData = function (req, res, next) {
 						console.log("Mongo: Retrieved liked items by ID for profile");
 						res.userInfo.cartLiked = docs;
 						//console.log(res.userInfo.cartLiked);
+						
 					} else {
 						res.userInfo.alert = "Error showing liked items.";
-
+						return res.end();
 					}
 					Product.find({'item.itemId': {$in : itemPurchased}}, function (err, docs) {
 							if (docs.length != 0) {
 								console.log ("Mongo: Retrieved purchased items by ID for profile");
 								res.userInfo.cartPurchased = docs;
-								res.json(res.userInfo);
+								return res.json(res.userInfo);
 							} else {
 								res.userInfo.alert = "Error showing purchased items.";
-								res.json(res.userInfo);
+								return res.json(res.userInfo);
 							}
 					});
 				});
