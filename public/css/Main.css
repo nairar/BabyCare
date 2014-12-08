@@ -8,6 +8,23 @@ body {
 	font-family: Calibri;
 }
 
+@media (min-width: 768px) {
+	.babyImage {
+	width : 500px;
+	height: 300px;
+	box-shadow: 0 0 10px orange;
+	margin-left: 10px;
+}
+}
+
+@media (max-width: 768px) {
+	.babyImage {
+	width : 250px;
+	height: 150px;
+	box-shadow: 0 0 10px orange;
+	margin-left: 10px;
+}
+}
 
 .nav-div {
 	background-color: #222222;
@@ -169,10 +186,6 @@ navbar ul li:hover > ul li {
 	
 }
 
-.knowUsUL {
-
-}
-
 
 .form-login {
 	padding: 0 0 0 0 ;
@@ -238,6 +251,13 @@ input[type="radio"] {
 /***********************Product display**************************/
 
 @media (min-width: 768px) {
+	.nav-div {
+		background-color: #222222;
+		height: 40px;
+		position: fixed;
+		width: 100%;
+	}
+
 	.homePageNavOptions {
 		padding-top: 100px;
 	}
@@ -273,7 +293,7 @@ input[type="radio"] {
 
 	.homePageNavOptions .productCards {
 		width: 300px;
-		font-size: 15px;
+		font-size: 20px;
 		height: 300px;
 	}
 
@@ -281,7 +301,6 @@ input[type="radio"] {
 	.productCards {
 		float: left;
 		position: relative;
-
 		border: 5px solid black;
 		background: rgb(0, 0, 0) transparent;
 	    /* RGBa with 0.6 opacity */
@@ -300,7 +319,7 @@ input[type="radio"] {
 @media (max-width: 768px) {
 	.nav-div {
 		background-color: #222222;
-		height: 130px;
+		height: 145px;
 		position: fixed;
 		width: 100%;
 	}
@@ -337,7 +356,7 @@ input[type="radio"] {
 	}
 
 	.homePageNavOptions ul:hover {
-		background-color: orange;
+		background-color: lightgreen;
 		cursor: pointer;
 	}
 
@@ -346,7 +365,6 @@ input[type="radio"] {
 		width: 200px;
 		font-size: 15px;
 		height: 300px;
-		border: 5px solid black;
 		background: rgb(0, 0, 0) transparent;
 	    /* RGBa with 0.6 opacity */
 	    background: rgba(0, 0, 0, 0.4);

@@ -1,12 +1,12 @@
 <ul class="productCards" ng-repeat="product in products">
-	<li>
+	<li ng-click="displayItemDetails(product, '/getProductDetailsExtended')">
 		<span>
 			<div>
 				<span>
 					<img src="{{product.item.thumbnailImage}}" />
 				</span>
 			</div>
-			<div class="productDescription" ng-click="displayItemDetails(product, '/getProductDetailsExtended')">
+			<div class="productDescription">
 				<div>
 					<a href="#" bubbletooltip="Click to see details">{{product.item.name}}</a>
 				</div>

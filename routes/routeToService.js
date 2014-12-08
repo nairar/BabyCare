@@ -24,6 +24,10 @@ var serveRoutes = function(app, passport) {
 		res.render("Main.ejs", userInfo);
 	});
 
+	app.get('/about', function (req, res) {
+		res.render('AboutUs.ejs');
+	});
+
 	/* Route to the main index page */
 	app.get('/main', function (req, res) {
 		console.log(res.userInfo);
