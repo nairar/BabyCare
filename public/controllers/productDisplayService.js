@@ -1,5 +1,6 @@
 angular.module('BabyCare').factory("ProductDisplayService", function ($http) {
 	var currentlyDisplayedProduct = undefined;
+	var searchWord = "";
 	/*var create = function(employee, callback) {
 		 
 	} 
@@ -16,6 +17,14 @@ angular.module('BabyCare').factory("ProductDisplayService", function ($http) {
 		$http.get('/getProductsByCategory/'+ categoryNode).success(callback);
 	}
 
+	var saveSearch = function (word) {
+		this.searchWord = word;
+	}
+
+	var getSearchResults = function (callback) {
+		console.log("Search word retrieved is : " + this.searchWord);
+		$http.get('/search/' + this.searchWord).success(callback);
+	}
 
 	var expandCartProduct = function (cartItem, callback) {
 		$http.get('/getItem/'+cartItem.itemId).success(function (res) {
@@ -55,7 +64,9 @@ angular.module('BabyCare').factory("ProductDisplayService", function ($http) {
 		"selectByCategoryNode": selectByCategoryNode,
 		"saveProductDetailsExtended": saveProductDetailsExtended,
 		"getProductDetailsExtended": getProductDetailsExtended,
-		"expandCartProduct" : expandCartProduct
+		"expandCartProduct" : expandCartProduct,
+		"saveSearch" : saveSearch,
+		"getSearchResults" : getSearchResults
 		/*"remove": remove,
 		"update": update*/
 

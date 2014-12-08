@@ -43,6 +43,11 @@ app.config(['$routeProvider',
         when('/user/profile', {
             templateUrl: 'views/profile.ejs',
             controller: 'ProfileController'
+        }).
+        when('/search/:text', {
+            templateUrl: 'views/listProductsInCategory.ejs',
+            controller: 'ProductDisplayController'
         });
+
   }
 ]);

@@ -12,9 +12,8 @@ var getAllData = function(req,res)
 			start = count1 * 10 + 1;
 			var query = 'http://walmartlabs.api.mashery.com/v1/search?format=json&categoryId=5427&apiKey=nf29te4xjwrkv8bub2sxqjx2&';
 			query+= 'query='+term+'&'+'start='+ start;
-			generateData1(query);
-			console.log(query, populate);
-		}
+			generateData1(query, populate);
+		}			
 	}
 	
 }

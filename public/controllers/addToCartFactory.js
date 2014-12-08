@@ -9,7 +9,7 @@ angular.module('BabyCare').factory("CartService", function ($http) {
 	}
 
 	var showCart = function (callback) {
-		$http.get('showCart').success(function (res) {
+		$http.get('/showCart').success(function (res) {
 			userCart = res;
 			callback(res);
 		});

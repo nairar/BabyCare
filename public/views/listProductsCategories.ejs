@@ -1,3 +1,9 @@
+<div class="searchForm">
+	<form class="rounded form-style">
+		<span><input type="text" name="search" class="search inset rounded" placeholder="search"></span>
+		<span><button ng-click = "saveSearch()"class="btn circle">Go</button></span>
+	</form>
+</div>
 <ul ng-repeat="productCategory in productCategories track by $index">
 				<li><a href="#/getProductsByCategory/{{productCategory.categoryNode}}">{{productCategory.category}}</a></li>
 </ul>

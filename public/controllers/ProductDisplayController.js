@@ -1,4 +1,4 @@
-app.controller("CategoryDisplayController", ["$scope", "$http", "ProductDisplayService", "$routeParams", function($scope, $http, ProductDisplayService, $routeParams) {
+app.controller("CategoryDisplayController", ["$scope", "$http", "ProductDisplayService", "$routeParams", "$location", function($scope, $http, ProductDisplayService, $routeParams, $location) {
     var websense_block = ['Maternity', 'Sex', 'Porn', 'Lingerie'];
 
     $scope.renderCategories = function(res) {
@@ -54,6 +54,13 @@ app.controller("CategoryDisplayController", ["$scope", "$http", "ProductDisplayS
         ProductDisplayService.selectAll($scope.renderCategories);
     }
 
+
+    $scope.saveSearch = function () {
+        var word = $('input[name="search"]').val();
+        console.log(word);
+        $location.path('/search/' + word);
+        ProductDisplayService.saveSearch(word);
+    }
     $scope.all();
 
     
@@ -71,7 +78,7 @@ app.controller("ProductDisplayController", ["$scope", "$http", "ProductDisplaySe
     var id = JSON.stringify($routeParams);
     console.log("Category from route params:" + id);
 
-    ProductDisplayService.selectByCategoryNode(id, $scope.renderProductsInCategory);
+    
 
     $scope.displayItemDetails = function (product, view) {
         
@@ -79,6 +86,24 @@ app.controller("ProductDisplayController", ["$scope", "$http", "ProductDisplaySe
             $location.path(view);
         });
     }
+
+    $scope.renderSearchProducts = function (products) {
+        $scope.products = products;
+    }
+
+    $scope.all = function () {
+        var products = ProductDisplayService.getSearchResults(function (res) {
+            console.log("Retrieved search result: " + res);
+            if (res.length == 0) {
+                ProductDisplayService.selectByCategoryNode(id, $scope.renderProductsInCategory);            
+            } else {
+                $scope.renderSearchProducts(res);
+            }
+
+        });
+    }
+
+    $scope.all();
 
 }]);
 

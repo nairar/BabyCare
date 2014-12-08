@@ -1,10 +1,12 @@
 var db = require('./db.js');
 var checkLogin = require('../auth/checkLogin.js');
 
+
 var ObjectId = require('mongoose').Types.ObjectId; 
 
 
 var Product = require('../DBSchema/productSchema.js');
+
 var Cart = require('../DBSchema/cartSchema.js');
 
 
@@ -223,6 +225,14 @@ var getProfileData = function (req, res, next) {
 }
 
 
+
+var search = function (reg, req, res) {
+	console.log(reg);
+	Product.find({$text : {$search : reg}}, function (err, docs) {
+		return res.json(docs);
+	});
+}
+
 exports.getProducts = getProducts;
 exports.selectByCategoryNode = selectByCategoryNode;
 exports.addToCart = addToCart;
@@ -230,3 +240,4 @@ exports.like = like;
 exports.showCart = showCart;
 exports.buy = buy;
 exports.getProfileData = getProfileData;
+exports.search = search;

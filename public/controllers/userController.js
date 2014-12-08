@@ -10,7 +10,6 @@ app.controller("UserController", ["$scope", "$http", "UserService", "SessionServ
         $scope.isLoggedIn = $scope.userInfo.isLoggedIn;
     }
 
-
     // Select by category 
     $scope.all = function (res) {
         console.log("Login complete");

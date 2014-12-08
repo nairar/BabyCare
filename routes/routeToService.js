@@ -24,6 +24,12 @@ var serveRoutes = function(app, passport) {
 		res.render("Main.ejs", userInfo);
 	});
 
+	app.get('/search/:text', function(req, res) {
+		console.log(req.params.text);
+		var str = req.params.text.toString().split(',');
+		crud.search(req.params.text, res, res);
+	});
+
 	app.get('/about', function (req, res) {
 		res.render('AboutUs.ejs');
 	});

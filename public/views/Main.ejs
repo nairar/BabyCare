@@ -15,12 +15,6 @@
 			<navbar ng-controller="UserController" ng-init="init()">
 				<ul>
 					<a href="#/" bubbletooltip="Go to HomePage"><li class="mascot">BabyCare</li></a>
-					<li>
-						<form class="rounded form-style">
-							<span><input type="text" class="search inset rounded" placeholder="search"></span>
-							<span><button class="btn circle">Go</button></span>
-						</form>
-                    <li>
                     <li class="loginUL">
                     	{{user}}<b class="glyphicon glyphicon-user"></b>
                     	<ul class="loginFormUL" ng-hide="isLoggedIn">
@@ -66,7 +60,7 @@
 	                    <ul class="knowUsUL">
 	                        <li><a href="/about">About</a></li>
 	                        <li><a href="/careers">Careers</a></li>
-	                        <li><a href="contact">Contact Us</a></li>
+	                        <li><a href="/contact">Contact Us</a></li>
 	                    </ul>
                     </li>
 				</ul>

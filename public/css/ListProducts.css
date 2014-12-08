@@ -6,6 +6,11 @@
 	margin-right: 15px;
 }
 
+.searchForm {
+	max-width: 190px;
+	margin-bottom: 20px;
+}
+
 .productCards li div span img{
 	margin-top: 10px;
 	box-shadow: 0 0 4px;

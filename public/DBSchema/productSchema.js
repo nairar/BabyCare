@@ -5,12 +5,12 @@ var productSchema = mongoose.Schema({
     item        : {
         itemId    	      		: Number,
         parentItemId	  		: Number,
-        name              		: String,
+        name              		: {type: String, index: true},
         salePrice	      		: Number,
         categoryNode	  		: String,
         categoryPath    		: String,
-        shortDescription 		: String,
-        longDescriptionkey      : String,
+        shortDescription 		: {type: String, index: true},
+        longDescriptionkey      : {type: String, index: true},
         customerRating			: String,
         standardShipRate		: Number,
         modelNumber				: String,
@@ -18,6 +18,5 @@ var productSchema = mongoose.Schema({
         thumbnailImage			: String
     }
 });
-
 
 module.exports = mongoose.model('product', productSchema);
