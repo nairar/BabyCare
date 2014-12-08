@@ -15,7 +15,7 @@
     .productLiked ul {
         margin-top: 20px;
         width: 250px;
-        height: 150px;
+        height: 200px;
         float:left;
         background: rgba(0, 0, 0, 0.6);
         border-color: black;
@@ -33,7 +33,7 @@
     .productPurchased ul {
         margin-top: 20px;
         width: 250px;
-        height: 150px;
+        height: 200px;
         float:left;
         border-color: black;
         background: rgba(0, 0, 0, 0.6);
