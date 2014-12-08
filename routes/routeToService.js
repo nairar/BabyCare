@@ -28,6 +28,15 @@ var serveRoutes = function(app, passport) {
 		res.render('AboutUs.ejs');
 	});
 
+
+	app.get('/contact', function (req, res) {
+		res.render('contact.ejs');
+	});	
+
+	app.get('/careers', function (req, res) {
+		res.render('career.ejs');
+	});	
+
 	/* Route to the main index page */
 	app.get('/main', function (req, res) {
 		console.log(res.userInfo);
@@ -135,6 +144,7 @@ var serveRoutes = function(app, passport) {
 		console.log("Getting liked items..");
 		crud.getProfileData(req, res, next);
 	});
+
 
 	
 
