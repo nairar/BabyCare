@@ -7,7 +7,8 @@ app.controller("ProfileController", ["$scope", "$http", "ProfileService", "$rout
             console.log(res);
             $scope.likedItems = res.cartLiked;
             $scope.purchasedItems = res.cartPurchased;
-            $scope.message = res.alert;
+            if (res.cartLiked.length == 0 && res.cartPurchased.length == 0)
+                $scope.message = res.alert;
         });     
     }
 
