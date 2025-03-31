@@ -25,6 +25,6 @@ async function connectDB() {
 //var products = mongoConnectionClient.db(dbName);
 
 exports.mongoose = mongoose;
-exports.products = products;
+exports.products = dbName;
 exports.url = url;
 module.exports = connectDB;
