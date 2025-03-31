@@ -6,7 +6,7 @@ const dbName = 'products'; // Update with your actual database name
 
 async function connectDB() {
     try {
-        const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+        const client = new MongoClient(urlMain, { useNewUrlParser: true, useUnifiedTopology: true });
         await client.connect();
         console.log("Connected to MongoDB successfully!");
         return client.db(dbName);
@@ -18,12 +18,8 @@ async function connectDB() {
 
 
 
-if (process.env.OPENSHIFT_MONGODB_DB_URL) {
-	var url = process.env.OPENSHIFT_MONGODB_DB_URL + 'babycare';	
-}
- else {
+
  	var url = urlMain;
- }
 
 //var products = mongoConnectionClient.db(dbName);
 
