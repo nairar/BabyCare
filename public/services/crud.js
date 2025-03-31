@@ -242,7 +242,7 @@ var getProfileData = function (req, res, next) {
 var search = function (reg, req, res) {
 	console.log(reg);
 	Product.find({$text : {$search : reg}})
-    .then(res.json(docs))
+    .then(res.json())
     .catch(err => console.error(err));
 	/*Product.find({$text : {$search : reg}}, function (err, docs) {
 		return res.json(docs);
