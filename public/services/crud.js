@@ -42,7 +42,7 @@ var selectByCategoryNode = function(category_id, req, res) {
 		var obj = JSON.parse(category_id);
 		console.log(JSON.stringify(obj));
 		console.log("Mongo: Checking categoryNode value: " + obj);
-		Product.find({ "item.categoryNode": { $regex: ".*" + obj.categoryNode + ".*" } })
+		Product.find({ "item.categoryNode": { $regex: ".*" + obj.text + ".*" } })
 		    .then(products => {
 		        console.log("Mongo: Products for given category were found to be:", products);
 		        res.json({ products: products });
