@@ -121,7 +121,7 @@ var serveRoutes = function(app, passport) {
 
 	app.get('/getProducts', crud.getProducts);
 	app.get('/getProductsByCategory/:categoryNode', function (req, res) {
-		console.log("categoryNode is":req.params.categoryNode);
+		console.log("categoryNode is :" + req.params.categoryNode);
 		crud.selectByCategoryNode(req.params.categoryNode, req, res);
 	});
 	app.get('/getItem/:product_id', pop.getProduct);
