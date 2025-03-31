@@ -37,7 +37,17 @@ async function getProducts() {
 
 
 var selectByCategoryNode = function(category_id, req, res) {
-	
+		const productSchema = new Schema({
+		    name: String,
+		    categoryNode: String
+		});
+		
+		// Create a text index on name and categoryNode
+		productSchema.index({ name: 'text', categoryNode: 'text' });
+
+		const Product = mongoose.model('Product', productSchema);
+
+		module.exports = Product;
 		console.log("Connected to MongoDB to select products in a category");
 		var obj = JSON.parse(category_id);
 		console.log(JSON.stringify(obj.text));
