@@ -25,8 +25,8 @@ module.exports = connectDB;
  	var url = 'mongodb://localhost:27018/BabyCare';
  }*/
 
-var products = mongoConnectionClient.db(dbName);
+//var products = mongoConnectionClient.db(dbName);
 
 exports.mongoose = mongoose;
-exports.products = products;
+//exports.products = products;
 exports.url = url;
