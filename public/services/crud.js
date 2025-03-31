@@ -42,7 +42,18 @@ var selectByCategoryNode = function(category_id, req, res) {
 		var obj = JSON.parse(category_id);
 		console.log(JSON.stringify(obj.text));
 		console.log("Mongo: Checking categoryNode value: " + obj);
-		Product.find({ "item.categoryNode": { $regex: ".*" + JSON.stringify(obj.text) + ".*" } })
+		Product.find({
+			    name: { $regex: new RegExp(".*" + JSON.stringify(obj.text) + ".*", 'i') }  // 'i' for case-insensitive search
+			})
+			.then(products => {
+			    console.log("Matching products: ", products);
+			})
+			.catch(err => {
+			    console.error("Error:", err);
+			    res.status(500).json({ error: "Internal Server Error" }); 	
+			});
+	
+		/*Product.find({ "item.categoryNode": { $regex: ".*" + JSON.stringify(obj.text) + ".*" } })
 		    .then(products => {
 		        console.log("Mongo: Products for given category were found to be:", products);
 		        res.json({ products: products });
@@ -50,7 +61,7 @@ var selectByCategoryNode = function(category_id, req, res) {
 		    .catch(err => {
 		        console.error("MongoDB Error:", err);
 		        res.status(500).json({ error: "Internal Server Error" });
-		    });
+		    });*/
 }
 
 
