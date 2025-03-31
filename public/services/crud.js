@@ -241,9 +241,12 @@ var getProfileData = function (req, res, next) {
 
 var search = function (reg, req, res) {
 	console.log(reg);
-	Product.find({$text : {$search : reg}}, function (err, docs) {
+	Product.find({$text : {$search : reg}})
+    .then(return res.json(docs))
+    .catch(err => console.error(err));
+	/*Product.find({$text : {$search : reg}}, function (err, docs) {
 		return res.json(docs);
-	});
+	});*/
 }
 /*
 var search = function(query, req, res) {
