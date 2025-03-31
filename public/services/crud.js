@@ -43,7 +43,7 @@ var selectByCategoryNode = function(category_id, req, res) {
 		console.log(JSON.stringify(obj.text));
 		console.log("Mongo: Checking categoryNode value: " + obj);
 		Product.find({
-			   $text: { $search: obj["text"]) }
+			   $text: { $search: obj["text"] }
 			})
 			.then(products => {
 			    console.log("Matching products: ", products);
