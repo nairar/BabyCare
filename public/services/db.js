@@ -17,7 +17,7 @@ async function connectDB() {
     }
 }
 
-var url = urlMain;
+
 
 //var products = mongoConnectionClient.db(dbName);
 
