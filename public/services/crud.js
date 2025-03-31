@@ -10,7 +10,7 @@ var Product = require('../DBSchema/productSchema.js');
 var Cart = require('../DBSchema/cartSchema.js');
 
 
-async function getProducts = try {
+/*async function getProducts = try {
 	
 		console.log("Connected to MongoDB for products");
 		
@@ -22,6 +22,17 @@ async function getProducts = try {
         console.error(err);
     }
 	
+}*/
+
+async function getProducts() {
+    try {
+	console.log("Connected to MongoDB for products");
+        const products = await Product.find({});
+        res.json({products: products});
+    } catch (err) {
+        console.error(err);
+        return [];
+    }
 }
 
 
