@@ -45,7 +45,30 @@ module.exports = function (passport) {
                 //console.log(req.body);
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            User.findOne({ 'local.email' :  email }, function(err, user) {
+            User.findOne({ 'local.email' :  email })
+                  .then(user => {
+        if (!user) {
+              console.log("No such user found in database");
+                    // if there is no user with that email
+                    // create the user
+                    var newUser            = new User();
+
+                    // set the user's local credentials
+                    newUser.local.email    = email;
+                    newUser.local.password = newUser.generateHash(password);
+
+                    // save the user
+                    newUser.save(function(err) {
+                        if (err)
+                            throw err;
+                        console.log("Saved user to database");
+                        
+                    });        }
+        return done(null, newUser);
+    })
+    .catch(err => done(err));
+                  
+            /*User.findOne({ 'local.email' :  email }, function(err, user) {
                 // if there are any errors, return the error
                 //console.log("Checking whether user exists before creating");
                 if (err)
@@ -78,7 +101,7 @@ module.exports = function (passport) {
 
             });
 
-        }));
+        }));*/
 
         passport.use('local-login', new LocalStrategy({
                 // by default, local strategy uses username and password, we will override with email
