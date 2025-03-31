@@ -22,9 +22,9 @@ async function connectDB() {
 
  	var url = urlMain;
 
-//var products = mongoConnectionClient.db(dbName);
+var products = mongoConnectionClient.db(dbName);
 
 exports.mongoose = mongoose;
-exports.products = dbName;
+exports.products = products;
 exports.url = url;
 module.exports = connectDB;
