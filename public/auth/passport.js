@@ -66,7 +66,7 @@ module.exports = function (passport) {
                     });        }
         return done(null, newUser);
     })
-    .catch(err => done(err))})};
+    .catch(err => done(err))});}
                   
             /*User.findOne({ 'local.email' :  email }, function(err, user) {
                 // if there are any errors, return the error
