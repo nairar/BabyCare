@@ -16,7 +16,7 @@ async function connectDB() {
     }
 }
 
-module.exports = connectDB;
+
 
 if (process.env.OPENSHIFT_MONGODB_DB_URL) {
 	var url = process.env.OPENSHIFT_MONGODB_DB_URL + 'babycare';	
@@ -30,3 +30,4 @@ if (process.env.OPENSHIFT_MONGODB_DB_URL) {
 exports.mongoose = mongoose;
 //exports.products = products;
 //exports.url = url;
+module.exports = connectDB;
