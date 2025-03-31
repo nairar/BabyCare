@@ -47,6 +47,7 @@ var selectByCategoryNode = function(category_id, req, res) {
 			})
 			.then(products => {
 			    console.log("Matching products: ", products);
+			    res.json({products: products});
 			})
 			.catch(err => {
 			    console.error("Error:", err);
