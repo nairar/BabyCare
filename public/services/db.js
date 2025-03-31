@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 const { MongoClient } = require('mongodb');
 
-const url = 'mongodb://localhost:27018/BabyCare'; // Change this if your MongoDB URL is different
+const urlMain = 'mongodb://localhost:27018/BabyCare'; // Change this if your MongoDB URL is different
 const dbName = 'products'; // Update with your actual database name
 
 async function connectDB() {
@@ -18,12 +18,12 @@ async function connectDB() {
 
 module.exports = connectDB;
 
-/*if (process.env.OPENSHIFT_MONGODB_DB_URL) {
+if (process.env.OPENSHIFT_MONGODB_DB_URL) {
 	var url = process.env.OPENSHIFT_MONGODB_DB_URL + 'babycare';	
 }
  else {
- 	var url = 'mongodb://localhost:27018/BabyCare';
- }*/
+ 	var url = urlMain;
+ }
 
 //var products = mongoConnectionClient.db(dbName);
 
