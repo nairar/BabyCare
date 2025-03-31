@@ -24,4 +24,4 @@ var url = urlMain;
 exports.mongoose = mongoose;
 exports.products = dbName;
 exports.url = urlMain;
-//module.exports = connectDB;
+module.exports = connectDB;
