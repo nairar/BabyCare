@@ -18,12 +18,12 @@ async function connectDB() {
 
 module.exports = connectDB;
 
-if (process.env.OPENSHIFT_MONGODB_DB_URL) {
+/*if (process.env.OPENSHIFT_MONGODB_DB_URL) {
 	var url = process.env.OPENSHIFT_MONGODB_DB_URL + 'babycare';	
 }
  else {
  	var url = 'mongodb://localhost:27018/BabyCare';
- }
+ }*/
 
 var products = mongoConnectionClient.db(dbName);
 
