@@ -15,10 +15,20 @@ var checkLogin = require('./public/auth/checkLogin.js');
 var app = express();
 
 //Connect to DB
-mongoose.connect(mongodb.url, function (err) {
+/*mongoose.connect(mongodb.url, function (err) {
 	if (err) console.log(err);
 	console.log("Connected to MongoDB");	
-});
+});*/
+async function connectDB() {
+    try {
+        await mongoose.connect(mongodb.url, { useNewUrlParser: true, useUnifiedTopology: true });
+        console.log('Connected to MongoDB');
+    } catch (err) {
+        console.error('Failed to connect to MongoDB', err);
+    }
+}
+
+connectDB();
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 var port      = process.env.OPENSHIFT_NODEJS_PORT || 4200;
