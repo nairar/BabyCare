@@ -6,6 +6,7 @@ const dbName = 'products'; // Update with your actual database name
 
 async function connectDB() {
     try {
+        console.log('urlMain:', urlMain);
         const client = new MongoClient(urlMain, { useNewUrlParser: true, useUnifiedTopology: true });
         await client.connect();
         console.log("Connected to MongoDB successfully!");
