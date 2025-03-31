@@ -44,9 +44,7 @@ var selectByCategoryNode = function(category_id, req, res) {
 		
 		// Create a text index on name and categoryNode
 		productSchema.index({ name: 'text', categoryNode: 'text' });
-
-		const Product = mongoose.model('Product', productSchema);
-
+		const ProductType = mongoose.model('ProductType', productSchema);
 		module.exports = Product;
 		console.log("Connected to MongoDB to select products in a category");
 		var obj = JSON.parse(category_id);
